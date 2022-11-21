@@ -1,1 +1,3 @@
-# laundary-cart-frontend
+# laundry-cart-frontend
+
+Laundry Cart app using ReactJS
