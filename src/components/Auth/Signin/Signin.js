@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import {useHistroy} from "react-router-dom"
-import { useNavigate } from "react-router-dom";
+// import {useHistroy} from "react-router-dom"
+// import { useNavigate } from "react-router-dom";
 import "./Signin.css";
 
 const Signin = () => {
-  const histroy=useHistroy()
-  const [email, setEmail] = useState("");
+  // const histroy=useHistroy()
+  const [username, setEmail] = useState("");
   const [password,setPass]=useState("")
   const loginUser= async (e)=>{
     e.preventDefault();
@@ -15,16 +15,17 @@ const Signin = () => {
       headers:{
         "Content-Type":"application/json"
       },body:JSON.stringify({
-        email,
+        username,
         password
       })
      })
-     const data= res.json()
-     if(res.status===400 ||500 || !data){
-         window.alert("Invaid Email")
+   const data= await res.json()
+   console.log(data)
+     if(res.status=== 400 || !data){
+         window.alert("Invaid Emaillllllllll")
      }else{
       window.alert("Login Successfull")
-      histroy.push("/")
+      // histroy.push("/")
      }
   }
   return (
@@ -40,9 +41,10 @@ const Signin = () => {
           <p className="">SIGN IN</p>
           <form method="POST" className="">
             <label class="">
+            
               <input 
                 style={{ fontSize: "18px", color: "#77838F" }}
-                value={email}
+                value={username}
                 onChange={(e)=>{setEmail(e.target.value)}}
                 type="text"
                 placeholder="Email"
