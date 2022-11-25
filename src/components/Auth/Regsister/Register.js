@@ -1,11 +1,19 @@
 import React from "react";
 import { useState } from "react";
 import "./Register.css"
+import Header from "../../header";
+import Footer from "../../footer";
+// import { useNavigate } from "react-router-dom";
+
+
 
 const Register = () => {
   const[user,setUser]=useState({
     name:"",email:"",phone:"",district:"",state:"",pincode:"",address:"",password:"",cpassword:""
   })
+  // const navigate = useNavigate();
+
+
   let name,value;
   const handleInputs=(e)=>{
     console.log(e)
@@ -35,40 +43,41 @@ const Register = () => {
      })
       // await res.json()
      const data = await res.json()
-    if(res.status=== 400 ||422 ||500 || !data){
-         window.alert("registration succ")
+    if(res.status=== 400 || !data){
+         window.alert("registration failed ")
         //  console.log("registration succ")
     }else{
-      window.alert("invalid succ")
+      window.alert("registration succues")
         //  console.log("invalid succ")
     }
   }
   
 
   return (
-    <>
-      <div className="signupcontainer">
-        <div className="signupcontainer-left">
-          <h1 className="signup-maincontainer-laundryheading">
+    <> 
+      <Header/>
+      <div className="signup-cont">
+        <div className="signup-cont-left">
+          <h1 className="signup-main-laundryheading">
             Laundry Service
           </h1>
-          <p className="signup-maincontainer-laundrydescription">
+          <p className="signup-main-laundrydescription">
             Doorstep Wash & Dryclean Service
           </p>
-          <p className="signup-maincontainer-alreadyhaveaccount">
+          <p className="signup-main-alreadyhaveaccount">
             Already Have Account
           </p>
           <button
             // onClick={() => {
             //   navigate("/");
             // }}
-            className="signup-maincontainer-registerbutton"
+            className="signup-main-registerbutton"
           >
             Sign In
           </button>
         </div>
-        <div className="signupcontainer-right">
-          <p className="signup-maincontainer-registerheading">REGISTER</p>
+        <div className="signup-cont-right">
+          <p className="signup-main-registerheading">REGISTER</p>
           <div className="register-input">
             <div className="register-input-width50">
               <label class="custom-field two">
@@ -255,6 +264,7 @@ const Register = () => {
           </button>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
