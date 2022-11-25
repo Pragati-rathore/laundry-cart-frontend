@@ -1,0 +1,206 @@
+.signupcontainer {
+    display: flex;
+}
+
+.signupcontainer-left {
+    width: 30%;
+    padding-left: 69.25px;
+}
+
+.signupcontainer-right {
+    width: 70%;
+    background: #F8F9FF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    padding-left: 63px;
+}
+
+.signup-maincontainer-laundryheading {
+    padding-top: 100px;
+    text-align: left;
+    /* font: normal normal 900 62px/80px Avenir; */
+    letter-spacing: 2.48px;
+    color: #5861AE;
+    text-transform: capitalize;
+    opacity: 1;
+    font-size: 62px;
+        font-weight: 700;
+}
+
+.signup-maincontainer-laundrydescription {
+    text-align: left;
+    /* font: normal normal normal 20px/32px Avenir; */
+    letter-spacing: 0.8px;
+    color: #565657;
+    text-transform: capitalize;
+    opacity: 1;
+    width: 175px;
+    margin-bottom: 139.5px;
+    font-size: 20px;
+    font-size: 20px;
+        font-family: inherit;
+}
+
+.signup-maincontainer-alreadyhaveaccount {
+    text-align: left;
+    /* font: normal normal normal 16px/26px Avenir; */
+    letter-spacing: 0.64px;
+    color: #565657;
+    text-transform: capitalize;
+    opacity: 1;
+    font-size: 16px;
+        font-family: inherit;
+
+}
+
+.signup-maincontainer-registerbutton {
+    text-align: center;
+    /* font: normal normal bold 15px/20px Open Sans; */
+    letter-spacing: 0.3px;
+    color: #4552C1;
+    /* opacity: 1; */
+    border: 2px solid #4552C1;
+    border-radius: 4px;
+    opacity: 1;
+    width: 120px;
+    
+            height: 50px;
+            font-size: 18px;
+            font-weight: 600;
+        
+    
+    
+    background: white;
+  
+    margin-bottom: 45px;
+    margin-top: 20.5px;
+   
+    
+}
+
+.signup-maincontainer-registerheading {
+    text-align: left;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 60px;
+    letter-spacing: 1.28px;
+    color: #4552C1;
+    text-transform: uppercase;
+    opacity: 1;
+    padding-top: 45px;
+    margin-bottom: 50px;
+}
+
+.register-input {
+    display: flex;
+    margin-bottom: 130px;
+}
+
+.register-input-width50 {
+    width: 50%;
+}
+
+input.register-checkbox {
+    border: 1px solid #707070;
+    border-radius: 3px;
+    width: 30px;
+}
+
+.register-agree {
+    text-align: center;
+
+    font: normal normal normal 14px/20px Open Sans;
+    letter-spacing: 0.49px;
+    color: #5861AE;
+    opacity: 1;
+}
+
+.registerbtn {
+    width: 150px;
+    height: 50px;
+    background: #4552C1 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    opacity: 1;
+    padding-top: 14px;
+    padding-left: 43px;
+    padding-bottom: 16px;
+
+    padding-right: 43px;
+    text-align: center;
+    font: normal normal 15px/20px Open Sans;
+    letter-spacing: 0.3px;
+    color: #FFFFFF;
+    border: none;
+    margin-top: 41.55px;
+}
+
+.custom-field {
+    position: relative;
+    font-size: 17px;
+    border-top: 20px solid transparent;
+    margin-bottom: 5px;
+    --field-padding: 12px;
+}
+
+.custom-field input {
+    border: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    padding: var(--field-padding);
+
+    width: 370px;
+    outline: none;
+    font-size: 14px;
+}
+
+.custom-field .placeholder {
+    position: absolute;
+    left: var(--field-padding);
+    width: calc(100% - (var(--field-padding) * 2));
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    top: 22px;
+    line-height: 100%;
+    transform: translateY(-50%);
+    color: #aaa;
+    transition:
+        top 0.3s ease,
+        color 0.3s ease,
+        font-size 0.3s ease;
+    padding-bottom: 25px;
+}
+
+.custom-field input.dirty+.placeholder,
+.custom-field input:focus+.placeholder,
+.custom-field input:not(:placeholder-shown)+.placeholder {
+    top: -10px;
+    font-size: 12px;
+    letter-spacing: 0.42px;
+    color: #5861AE;
+}
+
+.custom-field.two input {
+    border-radius: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background:
+        linear-gradient(90deg, #5861AE, #5861AE) center bottom/0 0.15em no-repeat,
+        linear-gradient(90deg, #ccc, #ccc) left bottom/100% 0.15em no-repeat,
+        linear-gradient(90deg, #f8f9ff, #f8f9ff) left bottom/100% no-repeat;
+    transition: background-size 0.3s ease;
+}
+
+.custom-field.two input.dirty,
+.custom-field.two input:not(:placeholder-shown),
+.custom-field.two input:focus {
+    background-size: 100% 0.15em, 100% 0.1em, 100%;
+}
+
+/* #signup-error{
+    text-decoration: none;
+    color: red;
+    margin-top: 5px;
+ } */
