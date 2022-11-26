@@ -10,7 +10,7 @@
 
 .signup-cont-right {
     width: 70%;
-    background: #F8F9FF 0% 0% no-repeat padding-box;
+    background: #dbdef2 0% 0% no-repeat padding-box;
     opacity: 1;
     padding-left: 63px;
 }
@@ -29,7 +29,7 @@
 
 .signup-main-laundrydescription {
     text-align: left;
-    /* font: normal normal normal 20px/32px Avenir; */
+    font: normal normal normal 20px/32px Avenir;
     letter-spacing: 0.8px;
     color: #565657;
     text-transform: capitalize;
@@ -43,7 +43,7 @@
 
 .signup-main-alreadyhaveaccount {
     text-align: left;
-    /* font: normal normal normal 16px/26px Avenir; */
+    font: normal normal normal 16px/26px Avenir;
     letter-spacing: 0.64px;
     color: #565657;
     text-transform: capitalize;
@@ -205,8 +205,3 @@ input.register-checkbox {
     background-size: 100% 0.15em, 100% 0.1em, 100%;
 }
 
-/* #signup-error{
-    text-decoration: none;
-    color: red;
-    margin-top: 5px;
- } */

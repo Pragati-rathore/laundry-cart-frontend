@@ -24,8 +24,9 @@ const Signin = () => {
       })
      })
    const data= await res.json()
+   console.log(res.status)
    console.log(data)
-     if(res.status=== 400 || !data){
+     if(data.status==="failed"){
          window.alert("Invaid creadential")
      }
 
