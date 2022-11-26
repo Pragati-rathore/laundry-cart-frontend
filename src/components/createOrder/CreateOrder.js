@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import ProductRow from "./ProductRow";
-//import './CreateOrder.css';
+import Summary from "./Summary";
+import './CreateOrder.css';
+
+//images
+import searchIcon from "../../images/search.svg";
 
 export default function CreateOrder(props) {
   const [productTypes, setProductTypes] = useState([]);
   const [searchProduct, setSearchProduct] = useState("");
   const [order, setOrder] = useState([]); //[{productSchema}] {prodType:"prodName", quantity, washType:{wash, iron, dryClean}}
-  /*productTypes
-   * {
-    _id: ObjectId("637e1d8608045c36435dfe8d"),
-    prodName: 'shirts',
-    prodCharges: [ 20, 10, 15, 30 ]
-  }*/
+  //summary related
+  const [showSummary, setShowSummary] = useState(false);
 
   useEffect(() => {
     fetch("https://laundry-server.onrender.com/products")
@@ -63,15 +63,36 @@ export default function CreateOrder(props) {
         });
       });
     }
+
+    if (logic === "reset") {
+      setOrder((oldOrder) => {
+        return oldOrder.map((order) => {
+          if (order.prodType === prodName) {
+            order.quantity = 0;
+            order.washType = {
+              wash: false,
+              iron: false,
+              dryClean: false,
+              bleaching: false
+            }
+            return order;
+          }
+          return order;
+        });
+      });
+    }
   };
 
-  useEffect(() => {console.log(order)}, [order]);
+  //useEffect(() => {console.log(order)}, [order]);
 
   return (
     <div className="create-order-container">
       <div className="create-order-header">
         <h2>Create Order</h2>
-        {/*SEARCH COMPONENT seperate this TODO*/}
+        <div className="search-box">
+          <div className="search-icon-container">
+          <img src={searchIcon} alt="" />
+          </div>
         <input
           type="text"
           name="searchproduct"
@@ -81,6 +102,8 @@ export default function CreateOrder(props) {
           }}
           value={searchProduct}
         />
+        </div>
+      </div>
         <table className="create-order">
           <thead>
             <tr>
@@ -88,6 +111,7 @@ export default function CreateOrder(props) {
               <th>Quantity</th>
               <th>Wash Types</th>
               <th>Price</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -105,7 +129,14 @@ export default function CreateOrder(props) {
               ))}
           </tbody>
         </table>
+      <div className="proceed-btns-container">
+        {/*TODO add navigate to order history when cancelled*/}
+        <button className="btn1" type="button" onClick="#">Cancel</button>
+        <button className="btn2" type="button" onClick={(e) => setShowSummary(true)}>Proceed</button>
       </div>
+
+    {/*summary*/}
+      {!showSummary && <Summary order={order}/>}
     </div>
   );
 }

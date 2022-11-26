@@ -1,0 +1,68 @@
+.product-row {
+    height: 75px;
+}
+
+.product-row td {
+    padding: 0 25px;
+}
+
+.washtype-icon-container {
+    padding-right: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.washtype-icon-container label {
+    position: relative;
+}
+
+.washtype-icon-container input[type="checkbox"] {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.washtype-icon-container label {
+    cursor: pointer;
+}
+
+.product-quantity input {
+    font-size: 1em;
+    border-radius: 2px;
+    padding: 2px;
+    text-indent: 10px;
+    max-width: 62px;
+    height: 26px;
+}
+
+#reset-productRow {
+    border-radius: 4px;
+    background: white;
+    width: 81px;
+    color: #5861AE;
+    height: 32px;
+    border: 1px solid #5861AE;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#reset-productRow:hover {
+    background: #5861AE;
+    color: white;
+}
+
+.product-row td:nth-child(4) {
+    width: 120px;
+}
+
+.product-row td:last-child {
+    width: 120px;
+}
+
+.btn {
+    font-size: 1em;
+}

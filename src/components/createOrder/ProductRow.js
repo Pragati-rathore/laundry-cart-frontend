@@ -1,8 +1,16 @@
 import React from "react";
-//import './ProductRow.css';
+import "./ProductRow.css";
+
+import washIcon from "../../images/wash.svg";
+import ironingIcon from "../../images/iron.svg";
+import dryCleanIcon from "../../images/dryClean.svg";
+import bleachingIcon from "../../images/bleaching.svg";
+import washIconAlt from "../../images/washAlt.svg";
+import ironingIconAlt from "../../images/ironAlt.svg";
+import dryCleanIconAlt from "../../images/dryCleanAlt.svg";
+import bleachingIconAlt from "../../images/bleachingAlt.svg";
 
 export default function ProductRow(props) {
-  //TODO recieve the handler for quantity object and qunatity for value
   const { product, order, onChangeOrderHandler } = props;
 
   const prodOrder =
@@ -10,7 +18,7 @@ export default function ProductRow(props) {
       ? order.find((order) => order.prodType === product.prodName)
       : {
           prodName: "Unknown",
-          qunatity: 0,
+          quantity: 0,
           washType: {
             wash: false,
             iron: false,
@@ -46,70 +54,111 @@ export default function ProductRow(props) {
 
   return (
     <tr className="product-row">
-      <td>{product.prodName.toUpperCase()}</td>
-      <td>
+      <td>{product.prodName}</td>
+      <td className="product-quantity">
         <input
           type="number"
           placeholder="0"
           name={product.prodName}
           min="0"
           value={prodOrder.quantity}
+          style={prodOrder.quantity !== 0 ? {border: "1px solid #5861AE"} : {border: "1px solid #BABABA"}}
           onChange={(e) => onChangeOrderHandler(e, "quantity")}
         />
       </td>
       <td className="washtype">
-        <div className="washtype-icon-container washtype-icon1">
-          <img className="washtype-icon" src="#" alt="" />
-          <input
-            type="checkbox"
-            name="wash"
-            checked={prodOrder.washType.wash}
-            onChange={(e) => {
-              onChangeOrderHandler(e, "washType", product.prodName);
-            }}
-          />
+        <div className="washtype-icon-container">
+        <div className="washtype-icon1">
+          <label>
+            <img
+              className="washtype-icon"
+              src={prodOrder.washType.wash ? washIconAlt : washIcon}
+              alt="wash"
+            />
+            <input
+              type="checkbox"
+              name="wash"
+              checked={prodOrder.washType.wash}
+              onChange={(e) => {
+                onChangeOrderHandler(e, "washType", product.prodName);
+              }}
+            />
+          </label>
         </div>
-        <div className="washtype-icon-container washtype-icon2">
-          <img className="washtype-icon" src="#" alt="" />
-          <input
-            type="checkbox"
-            name="iron"
-            checked={prodOrder.washType.iron}
-            onChange={(e) => {
-              onChangeOrderHandler(e, "washType", product.prodName);
-            }}
-          />
+        <div className="washtype-icon2">
+          <label>
+            <img
+              className="washtype-icon"
+              src={prodOrder.washType.iron ? ironingIconAlt : ironingIcon}
+              alt="ironing"
+            />
+            <input
+              id="iron-check"
+              type="checkbox"
+              name="iron"
+              checked={prodOrder.washType.iron}
+              onChange={(e) => {
+                onChangeOrderHandler(e, "washType", product.prodName);
+              }}
+            />
+          </label>
         </div>
-        <div className="washtype-icon-container washtype-icon3">
-          <img className="washtype-icon" src="#" alt="" />
-          <input
-            type="checkbox"
-            name="dryClean"
-            checked={prodOrder.washType.dryClean}
-            onChange={(e) => {
-              onChangeOrderHandler(e, "washType", product.prodName);
-            }}
-          />
+        <div className="washtype-icon3">
+          <label>
+            <img
+              className="washtype-icon"
+              src={prodOrder.washType.dryClean ? dryCleanIconAlt : dryCleanIcon}
+              alt="dryClean"
+            />
+            <input
+              id="dryClean-check"
+              type="checkbox"
+              name="dryClean"
+              checked={prodOrder.washType.dryClean}
+              onChange={(e) => {
+                onChangeOrderHandler(e, "washType", product.prodName);
+              }}
+            />
+          </label>
         </div>
-        <div className="washtype-icon-container washtype-icon4">
-          <img className="washtype-icon" src="#" alt="" />
-          <input
-            type="checkbox"
-            name="bleaching"
-            checked={prodOrder.washType.bleaching}
-            onChange={(e) => {
-              onChangeOrderHandler(e, "washType", product.prodName);
-            }}
-          />
+        <div className="washtype-icon4">
+          <label>
+            <img
+              className="washtype-icon"
+              src={
+                prodOrder.washType.bleaching ? bleachingIconAlt : bleachingIcon
+              }
+              alt="bleach"
+            />
+            <input
+              id="bleaching-check"
+              type="checkbox"
+              name="bleaching"
+              checked={prodOrder.washType.bleaching}
+              onChange={(e) => {
+                onChangeOrderHandler(e, "washType", product.prodName);
+              }}
+            />
+          </label>
+        </div>
         </div>
       </td>
       <td>
-        {prodOrder.quantity !== 0 && (
+        {prodOrder.quantity !== 0 ? (
           <>
             <span>{`${prodOrder.quantity} x ${chargePerProd()} = `}</span>
-            <span>{`${prodOrder.quantity * chargePerProd()}`}</span>
-          </>
-        )}
+            <span id="span-total-row">{`${prodOrder.quantity * chargePerProd()}`}</span>
+          </> 
+        ) : <span id="dashes">---</span>}
+      </td>
+      <td>
+        {prodOrder.quantity > 0 && <button
+          id="reset-productRow"
+          type="button"
+          onClick={(e) => onChangeOrderHandler(e, "reset", product.prodName)}
+        >
+          Reset
+        </button>}
       </td>
     </tr>
   );
