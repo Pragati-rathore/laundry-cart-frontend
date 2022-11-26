@@ -11,10 +11,10 @@ const Signin = () => {
   // const histroy=useHistroy()
   const [username, setEmail] = useState("");
   const [password,setPass]=useState("")
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const loginUser= async (e)=>{
     e.preventDefault();
-     const res= await fetch("/login",{
+     const res= await fetch("https://laundry-server.onrender.com/login",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
@@ -55,8 +55,8 @@ const Signin = () => {
                 value={username}
                 onChange={(e)=>{setEmail(e.target.value)}}
                 
-                type={show ? "text" : "password"}
-                placeholder="Email"
+                type= "text"
+                placeholder="Email/Phone"
               />
             </label>
             <p></p>
@@ -68,17 +68,14 @@ const Signin = () => {
                 value={password}
                 onChange={(e)=>{setPass(e.target.value)}}
                 placeholder="Password"
+                type="password"
               />
                <img
                 className="lock"
                 src={lock}
                 alt="show-pass"
                 style={{ cursor: "pointer" }}
-                onClick={() => {
-                  setShow((show) => {
-                    return !show;
-                  });
-                }}
+                
               />
             </label>
 
