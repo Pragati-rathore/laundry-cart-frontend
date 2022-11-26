@@ -5,16 +5,16 @@ import { useState } from "react";
 import "./Signin.css";
 import lock from "../lock.svg";
 import Header from "../../header";
-import Footer from "../../footer";
+import Foter from "../Footersend/Foter";
 
 const Signin = () => {
   // const histroy=useHistroy()
   const [username, setEmail] = useState("");
   const [password,setPass]=useState("")
   // const [show, setShow] = useState(false);
-  const loginUser= async (e)=>{
+  const loginUser=  (e)=>{
     e.preventDefault();
-     const res= await fetch("https://laundry-server.onrender.com/login",{
+    fetch("https://laundry-server.onrender.com/login",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
@@ -22,19 +22,20 @@ const Signin = () => {
         username,
         password
       })
-     })
-   const data= await res.json()
-   console.log(res.status)
-   console.log(data)
-     if(data.status==="failed"){
-         window.alert("Invaid creadential")
-     }
-
-     
-     else{
-      window.alert("Login Successfull")
-      // histroy.push("/")
-     }
+     }).then((res) => res.json())
+     .then((data) => {
+       console.log(data)
+       if (data.status === "failed") {
+         window.alert(data.message);
+         //  console.log("registration succ")
+       } else if(data.status==="success") {
+         window.alert(data.message);
+         //  console.log("invalid succ")
+       }
+     }).catch((err) => {
+       console.log(err);
+     });
+ 
   }
   return (
     <> <Header/>
@@ -90,7 +91,7 @@ const Signin = () => {
           </form>
         </div>
       </div>
-      <Footer/>
+      <Foter/>
     </>
   );
 };
