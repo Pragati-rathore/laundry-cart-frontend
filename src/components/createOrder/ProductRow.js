@@ -1,4 +1,5 @@
 import React from "react";
+//import './ProductRow.css';
 
 export default function ProductRow(props) {
   //TODO recieve the handler for quantity object and qunatity for value
@@ -18,6 +19,31 @@ export default function ProductRow(props) {
           },
         };
 
+  const chargePerProd = () => {
+    let charge = 0;
+    for (let key in prodOrder.washType) {
+      if (prodOrder.washType[key]) {
+        switch (key) {
+          case "wash":
+            charge += product.prodCharges[0];
+            break;
+          case "iron":
+            charge += product.prodCharges[1];
+            break;
+          case "dryClean":
+            charge += product.prodCharges[2];
+            break;
+          case "bleaching":
+            charge += product.prodCharges[3];
+            break;
+          default:
+            charge += 0;
+        }
+      }
+    }
+    return charge;
+  };
+
   return (
     <tr className="product-row">
       <td>{product.prodName.toUpperCase()}</td>
@@ -28,9 +54,7 @@ export default function ProductRow(props) {
           name={product.prodName}
           min="0"
           value={prodOrder.quantity}
-          onChange={(e) =>
-            onChangeOrderHandler(e, "quantity")
-          }
+          onChange={(e) => onChangeOrderHandler(e, "quantity")}
         />
       </td>
       <td className="washtype">
@@ -41,11 +65,7 @@ export default function ProductRow(props) {
             name="wash"
             checked={prodOrder.washType.wash}
             onChange={(e) => {
-              onChangeOrderHandler(
-                e,
-                "washType",
-                product.prodName
-              );
+              onChangeOrderHandler(e, "washType", product.prodName);
             }}
           />
         </div>
@@ -83,7 +103,14 @@ export default function ProductRow(props) {
           />
         </div>
       </td>
-      <td></td>
+      <td>
+        {prodOrder.quantity !== 0 && (
+          <>
+            <span>{`${prodOrder.quantity} x ${chargePerProd()} = `}</span>
+            <span>{`${prodOrder.quantity * chargePerProd()}`}</span>
+          </>
+        )}
+      </td>
     </tr>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ProductRow from "./ProductRow";
+//import './CreateOrder.css';
 
 export default function CreateOrder(props) {
   const [productTypes, setProductTypes] = useState([]);
