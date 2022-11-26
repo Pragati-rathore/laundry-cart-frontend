@@ -1,0 +1,28 @@
+#footer{
+    top: 882px;
+    left: 0px;
+    width: 1440px;
+    height: 50px;
+    background: #182838 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    opacity: 1;
+    
+}
+.footer_para{
+    display: flex;
+    color: #d8dada;
+    font-size: 15px;
+    padding-left: 720px;
+    letter-spacing: 0.12px;
+    opacity: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 2px;
+}
+.circle{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 2px solid #d8dada;
+    margin: 0px 10px;
+    text-align: center;
+} 
