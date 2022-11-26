@@ -131,12 +131,12 @@ export default function CreateOrder(props) {
         </table>
       <div className="proceed-btns-container">
         {/*TODO add navigate to order history when cancelled*/}
-        <button className="btn1" type="button" onClick="#">Cancel</button>
-        <button className="btn2" type="button" onClick={(e) => setShowSummary(true)}>Proceed</button>
+        <button id="btn-cancel" type="button" onClick="#">Cancel</button>
+        <button id="btn-proceed" type="button" onClick={(e) => setShowSummary(true)}>Proceed</button>
       </div>
 
     {/*summary*/}
-      {!showSummary && <Summary order={order}/>}
+      {showSummary && <Summary order={order} cancelHandler={() => setShowSummary(false)}/>}
     </div>
   );
 }

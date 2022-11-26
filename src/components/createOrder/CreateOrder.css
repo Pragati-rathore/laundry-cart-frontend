@@ -87,3 +87,31 @@ table.create-order thead {
 table.create-order th {
     padding: 0 25px;
 }
+
+.proceed-btns-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.proceed-btns-container button {
+    width: 107px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    background: white;
+    border: 1px solid #5861AE;
+    color: #5861AE;
+    cursor: pointer;
+}
+
+#btn-proceed {
+    width: 107px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    background: #5861AE;
+    border: 1px solid #5861AE;
+}

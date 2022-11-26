@@ -1,0 +1,21 @@
+.summary-createOrder .header {
+    width: 100%;
+    background-color: #5861AE;
+    height: 70px;
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header span:first-child {
+    margin: 0 15px;
+}
+
+.header .cancel {
+    margin: 0 15px;
+    cursor: pointer;
+}
+
