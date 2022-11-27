@@ -1,0 +1,8 @@
+.orders-route-container {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 20px;
+}
+

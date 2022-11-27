@@ -1,18 +1,26 @@
-import React from "react";
-import Footer from "./footer";
+import React, { useEffect } from "react";
 import SideBar from "./sidebar";
-import Header from "./header";
 import CreateOrderButton from "../createOrderButton";
+import { Outlet, useNavigate } from "react-router-dom";
 
-function Home(){
-     return(<>
-     <Header/>
-     <CreateOrderButton/>
-     <SideBar/>
-    
-     <Footer/>
-     
-     </>)
+import "./home.css";
+
+function Home() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        //check if logged in
+        if (!localStorage.getItem("laundry-token")) {
+            navigate("/");
+        }
+    });
+
+    return (
+        <div className="orders-route-container">
+                <SideBar />
+                <Outlet />
+        </div>
+    );
 }
 
 export default Home;
+//<CreateOrderButton/>

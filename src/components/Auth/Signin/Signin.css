@@ -1,7 +1,8 @@
 .signin-cont {
     display: flex;
     /* padding-bottom: 40px; */
-    width: 185%;
+    width: 100%;
+    height: 100%;
 }
 
 .signin-cont-left {

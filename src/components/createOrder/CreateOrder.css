@@ -8,6 +8,8 @@
 
     font-size: 16px;
     box-sizing: border-box;
+    padding: 20px 20px;
+    width: 100%;
 }
 
 .create-order-header {
