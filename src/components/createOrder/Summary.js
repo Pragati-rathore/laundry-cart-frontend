@@ -10,7 +10,7 @@ export default function Summary(props) {
     stAdd: "",
     phone: null,
   });
-  const subTotal = calculateSubTotal(order, productTypes);
+  const [chargeObj, subTotal] = calculateSubTotal(order, productTypes);
 
   useEffect(() => {
     fetch("https://laundry-server.onrender.com/stores")
@@ -104,7 +104,7 @@ export default function Summary(props) {
           <div>Order details</div>
           <table>
             {order.map((orderChoice) => {
-              return <PriceRow orderChoice={orderChoice} productTypes={productTypes} />;
+              return <PriceRow orderChoice={orderChoice} chargeObj={chargeObj} />;
             })}
             <tr id="sub-total"><td>{subTotal}</td></tr>
             <tr id="pickup-charge"><td>90</td></tr>
@@ -117,9 +117,26 @@ export default function Summary(props) {
 }
 
 function PriceRow(props) {
-  const { prodType, quantity, washType} = props.orderChoice;
-  const {productTypes} = props;
+  const { prodType, quantity} = props.orderChoice;
+  const {chargeObj} = props;
+  const serviceString = chargeObj[prodType][1];
+  const chargePerProd = chargeObj[prodType][0];
 
+  return (
+    <tr>
+      <td>{prodType}</td>
+      <td>{serviceString}</td>
+      <td>{`${quantity} X ${chargePerProd} =`}</td>
+      <td>{`${quantity * chargePerProd}`}</td>
+    </tr>
+  )
+}
+
+function calculateSubTotal(order, productTypes) {
+  let subTotal = 0;
+  let chargeObj = {};
+  order.forEach(orderChoice => {
+  const { prodType, quantity, washType} = orderChoice;
   const product = productTypes.find(product => product.prodName === prodType);
 
   const chargePerProd = (product) => {
@@ -149,55 +166,11 @@ function PriceRow(props) {
         }
       }
     }
-    return [charge, serviceString.substring(0, serviceString.length - 1).trim()];
+    return [charge, serviceString.substring(0, serviceString.length - 1).trim()]; 
   };
-  
-  const arr  = chargePerProd(product);
-  const chargePerItem = arr[0];
-  const serviceStr = arr[1];
-
-  return (
-    <tr>
-      <td>{prodType}</td>
-      <td>{serviceStr}</td>
-      <td>{`${quantity} X ${chargePerItem} =`}</td>
-      <td>{`${quantity * chargePerItem}`}</td>
-    </tr>
-  )
-}
-
-function calculateSubTotal(order, productTypes) {
-  let subTotal = 0;
-  order.forEach(orderChoice => {
-  const { prodType, quantity, washType} = orderChoice;
-  const product = productTypes.find(product => product.prodName === prodType);
-
-  const chargePerProd = (product) => {
-    let charge = 0;
-    for (let key in washType) {
-      if (washType[key]) {
-        switch (key) {
-          case "wash":
-            charge += product.prodCharges[0];
-            break;
-          case "iron":
-            charge += product.prodCharges[1];
-            break;
-          case "dryClean":
-            charge += product.prodCharges[2];
-            break;
-          case "bleaching":
-            charge += product.prodCharges[3];
-            break;
-          default:
-            charge += 0;
-        }
-      }
-    }
-    return charge; 
-  };
-
-    subTotal += chargePerProd(product) * quantity;
+    let [c, serviceString] = chargePerProd(product);
+    chargeObj[prodType] = [c, serviceString];
+    subTotal += c * quantity;
   })
-  return subTotal;
+  return [chargeObj, subTotal];
 }
