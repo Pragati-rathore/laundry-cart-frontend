@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import OrderSuccess from "./OrderSuccess";
 import "./Summary.css";
 
 export default function Summary(props) {
@@ -241,36 +242,6 @@ function PriceRow(props) {
   );
 }
 
-function OrderSuccess(props) {
-  const navigate = useNavigate();
-  return (
-    <>
-      <div
-        className="order-confirm-wrapper"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: 1001,
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div className="order-success">
-          <div className="check-icon">X</div>
-          <p>Your Order is successfully placed.</p>
-          <p>You can track the delivery in the "Orders" section.</p>
-          <button type="button" onClick={(_e) => navigate("/orders")}>
-            Go to orders
-          </button>
-        </div>
-      </div>
-    </>
-  );
-}
 
 function calculateSubTotal(order, productTypes) {
   let subTotal = 0;
