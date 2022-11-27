@@ -1,43 +1,48 @@
-.order-success {
+.order-success2 {
     box-sizing: border-box;
-    width: 460px;
-    height: 500px;
+    width: 410px;
+    height: 210px;
     background-color: white;
-    border-radius: 8px;
-    padding: 62px 100px;
+    border-radius: 2px;
     display: flex;
     flex-flow: column;
     gap: 20px;
     text-align: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     color: #0A1F44;
     font-size: 17px;
 }
 
-.check-icon {
-    border-radius: 50%; 
-    width: 120px;
-    height: 120px;
-    padding: 10px;
-    color: #5861AE;
-    font-weight: 900;
-    font-size: 80px;
-    background-color: #5861AE60;
+.order-success2 div:nth-child(2) {
+    font-size: 14px;
 }
 
-.order-success div:nth-child(2) {
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.order-success button {
-    border-radius: 22px;
+.order-success2 button {
+    border-radius: 4px;
     background-color: #5861AE;
     color: white;
     font-size: inherit;
-    width: 230px;
-    height: 44px;
+    width: 107px;
+    height: 32px;
     border: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.cancel-header2 {
+    background-color: #5861AE;
+    width: 100%;
+    border-radius: 2px 2px 1px 1px;
+    display: flex;
+    height: 43px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px;
+    box-sizing: border-box;
+    color: white;
+}
+
+#close-cancel-popup2 {
     cursor: pointer;
 }
