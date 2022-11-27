@@ -1,6 +1,7 @@
 .PastOrderfetch{
   display: flex;
 }
+
 .order{
 width: 100%;
 height: 25px;
@@ -23,18 +24,14 @@ h4{
 
 
 
-
-
-
-
-
 .pastorder-full-container {
   position: absolute;
   top: 3em;
   left: 5em;
   height: calc(100vh - 70px);
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 }
+
 .table-order-main-header {
   display: flex;
   justify-content: space-between;
@@ -53,7 +50,7 @@ h4{
 }
 .column {
   width: 9vw;
-  height: 100%;
+  /*height: 100%;*/
   /* border: 1px solid black; */
   display: flex;
   justify-content: center;
@@ -71,6 +68,11 @@ h4{
   /* border: none; */
   outline: none;
 }
+.tablePast {
+  position: relative;
+  width: 100%;
+}
+
 .orders-table-header {
   height: 35px;
   display: flex;
@@ -80,6 +82,18 @@ h4{
   /* padding: 1em; */
   color: #ffffff;
 }
+
+.past-order-table-wrapper {
+  /*overflow-y: scroll;*/
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+#past-order-rows-wrapper {
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
 .column > h6 {
   font-size: 14px;
 }
@@ -117,6 +131,17 @@ h4{
   justify-content: space-between;
   background-color: #ffffff;
   border: 1px solid #eaedf0;
+}
+
+#cancel-text-cell {
+  cursor: pointer;
+  color: #EB1717;
+  font-size: 12px;
+}
+
+.column > p > img {
+  width: 20px;
+  cursor: pointer;
 }
 /* h4,
 p {

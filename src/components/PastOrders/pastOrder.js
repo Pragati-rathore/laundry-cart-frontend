@@ -1,26 +1,33 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./pastOrder.css";
+import eyeIcon from "../../images/eye.png";
 import { useEffect } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function PastOrder() {
   const [orders, setOrders] = useState([]);
+  const [isCancel, setIsCancel] = useState(false);
+  const [isSummary, setIsSummary] = useState(false);
+  const [selectedOrderId, setSelectedOrderId] = useState("");
   const navigate = useNavigate();
-    
-  useEffect(()=> {
+
+  useEffect(() => {
     fetch("https://laundry-server.onrender.com/orders", {
       method: "GET",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("laundry-token")}`
-      }
-    }).then(res=> res.json()).then(data=> {
-      if (data.status==="failed") {
-        navigate("/");
-      }
-      if (data.status==="success") {
-        setOrders(data.orders);
-      }
-    }).catch(err => console.log(err));
+        authorization: `Bearer ${localStorage.getItem("laundry-token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "failed") {
+          navigate("/");
+        }
+        if (data.status === "success") {
+          setOrders(data.orders);
+        }
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -32,7 +39,7 @@ function PastOrder() {
           </div>
           <div className="table-create-search">
             <div>
-              <button className="create-button">Create</button>
+              <button className="create-button" onClick={_e => navigate("/orders/new")}>Create</button>
             </div>
             <div className="search-bar">
               <i
@@ -44,6 +51,7 @@ function PastOrder() {
           </div>
         </div>
 
+        <div className="past-order-table-wrapper">
         <div className="tablePast">
           <div className="orders-table-header">
             <div className="column">
@@ -76,40 +84,67 @@ function PastOrder() {
           </div>
         </div>
 
-        <div className="details-container1">
-          <div className="column">
-            <p>OROOO</p>
-          </div>
-          <div className="column">
-            <p>29 NOV 2022</p>
-          </div>
-          <div className="column">
-            <p>local</p>
-          </div>
-          <div className="column">
-            <p>hgag</p>
-          </div>
-          <div className="column">
-            <p>+919988667755</p>
-          </div>
-          <div className="column">
-            <p>12</p>
-          </div>
-          <div className="column">
-            <p>450</p>
-          </div>
-          <div className="column">
-            <p>ready to pickup</p>
-          </div>
-          <div className="column">
-            <p>
-              eye
-              {/* <i
-                            // onClick={() => changeHandler(ele._id)}
-                            class="fa-solid fa-eye"
-                            style={{ cursor: "pointer" }}
-                          ></i> */}
-            </p>
+          <div id="past-order-rows-wrapper">
+        {orders.length > 0 &&
+          orders.map((order) => {
+            let date = new Date(order.createdAt);
+            let dateStr = `${date
+              .toTimeString()
+              .split(" ")[0]
+              .substring(0, 5)}\n${date.toDateString().substring(4)}`;
+            let addArr = order.storeId.stAdd.split(",");
+            let district = addArr[addArr.length - 1];
+
+            return (
+              <div className="details-container1" key={order._id}>
+                <div className="column">
+                  <p>
+                    {order._id.substring(
+                      order._id.length - 4,
+                      order._id.length
+                    )}
+                  </p>
+                </div>
+                <div className="column">
+                  <p>{dateStr}</p>
+                </div>
+                <div className="column">
+                  <p>{order.storeId.stName}</p>
+                </div>
+                <div className="column">
+                  <p>{district}</p>
+                </div>
+                <div className="column">
+                  <p>{`+91${order.storeId.phone}`}</p>
+                </div>
+                <div className="column">
+                  <p>{order.quantity}</p>
+                </div>
+                <div className="column">
+                  <p>{order.total}</p>
+                </div>
+                <div className="column">
+                  <p>{order.status}</p>
+                </div>
+                <div className="column">
+                  {order.status === "Ready to pickup" ? (
+                    <p
+                      id="cancel-text-cell"
+                      onClick={(e) => {
+                        setIsCancel(true);
+                        setSelectedOrderId(order._id);
+                      }}
+                    >
+                      Cancel Order
+                    </p>
+                  ) : null}
+                </div>
+                <div className="column">
+                  <p><img src={eyeIcon} alt="view"/></p>
+                </div>
+              </div>
+            );
+          })}
           </div>
         </div>
       </div>
