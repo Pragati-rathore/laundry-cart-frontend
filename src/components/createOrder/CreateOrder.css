@@ -1,0 +1,117 @@
+.create-order-container {
+    --col-blue: #5861ae;
+    --col-head: #2f2f2f;
+    --col-quantity: #605959;
+    --col-equ: #221919;
+    --col-gray: #a0a0a0;
+    --col-prod-zero: #1d2022;
+
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.create-order-header {
+    margin: 0 0 18px;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 5px;
+    justify-content: space-between;
+    align-content: center;
+    color: var(--col-prod-zero);
+}
+
+.create-order-header > h2 {
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+}
+
+.create-order-header .search-box {
+    width: 100%;
+    max-width: 200px;
+    min-width: 100px;
+    display: flex;
+    gap: 5px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--col-gray);
+    outline: none;
+}
+
+.search-box .search-icon-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/*table*/
+table.create-order {
+    width: 100%;
+    text-align: left;
+    color: var(--col-prod-zero);
+    border-collapse: collapse;
+}
+
+table.create-order td {
+    border-collapse: collapse;
+    border: none;
+}
+
+table.create-order td {
+    --brdr: 1px solid var(--col-gray);
+    border-top: var(--brdr);
+    border-bottom: var(--brdr);
+}
+
+table.create-order td:first-child {
+    border-left: var(--brdr);
+}
+
+table.create-order td:last-child {
+    border-right: var(--brdr);
+}
+
+table.create-order td {
+    text-transform: capitalize;
+}
+
+table.create-order thead {
+    background-color: var(--col-head);
+    color: white;
+    height: 50px;
+}
+
+table.create-order th {
+    padding: 0 25px;
+}
+
+.proceed-btns-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.proceed-btns-container button {
+    width: 107px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    background: white;
+    border: 1px solid #5861AE;
+    color: #5861AE;
+    cursor: pointer;
+}
+
+#btn-proceed {
+    width: 107px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: white;
+    background: #5861AE;
+    border: 1px solid #5861AE;
+}
