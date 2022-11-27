@@ -233,7 +233,7 @@ function PriceRow(props) {
   const chargePerProd = chargeObj[prodType][0];
 
   return (
-    <tr style={{"border-bottom": "1px solid #00000029"}}>
+    <tr style={{borderBottom: "1px solid #00000029"}}>
       <td>{prodType}</td>
       <td>{serviceString}</td>
       <td>{`${quantity} X ${chargePerProd} =`}</td>
