@@ -13,7 +13,7 @@ export default function Summary(props) {
     phone: null,
   });
   const [chargeObj, subTotal, quantityTotal] = calculateSubTotal(order, productTypes);
-  const [isOrderSuccess, setIsOrderSuccess] = useState(true);
+  const [isOrderSuccess, setIsOrderSuccess] = useState(false);
 
   const [user, setUser] = useState({ _id: "", address: [] });
 
@@ -178,15 +178,15 @@ export default function Summary(props) {
                     );
                   })}
                   <tr id="sub-total">
-                    <td>SubTotal: </td>
+                    <td colSpan={3}>SubTotal: </td>
                     <td>{subTotal}</td>
                   </tr>
                   <tr id="pickup-charge">
-                    <td>Service Charge: </td>
+                    <td colSpan={3}>Pickup Charge: </td>
                     <td>{subTotal > 0 ? "90" : "0"}</td>
                   </tr>
                   <tr id="total-price">
-                    <td>Total: </td>
+                    <td colSpan={3}>Total: </td>
                     <td>{subTotal > 0 ? `Rs ${subTotal + 90}` : "Rs 0"}</td>
                   </tr>
                 </tbody>
@@ -233,7 +233,7 @@ function PriceRow(props) {
   const chargePerProd = chargeObj[prodType][0];
 
   return (
-    <tr>
+    <tr style={{"border-bottom": "1px solid #00000029"}}>
       <td>{prodType}</td>
       <td>{serviceString}</td>
       <td>{`${quantity} X ${chargePerProd} =`}</td>
