@@ -24,9 +24,9 @@ export default function Summary(props) {
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    console.log(selectedStore);
-  }, [selectedStore]);
+  //useEffect(() => {
+    //console.log(selectedStore);
+  //}, [selectedStore]);
 
   return (
     <>
@@ -58,7 +58,7 @@ export default function Summary(props) {
       >
         <div className="header">
           <span>Summary</span>
-          <span className="cancel" onClick={cancelHandler}>
+          <span className="close-order-summary" onClick={cancelHandler}>
             X
           </span>
         </div>
@@ -102,6 +102,9 @@ export default function Summary(props) {
         <div className="price-table-container">
           <div>Order details</div>
           <table>
+            {order.map((orderChoice) => {
+              return <PriceRow orderChoice={orderChoice} productTypes={productTypes} />;
+            })}
           </table>
         </div>
       </div>
@@ -110,41 +113,51 @@ export default function Summary(props) {
 }
 
 function PriceRow(props) {
-  const { prodType, quantity, washType, productTypes } = props.orderChoice;
+  const { prodType, quantity, washType} = props.orderChoice;
+  const {productTypes} = props;
 
   const product = productTypes.find(product => product.prodName === prodType);
 
   const chargePerProd = (product) => {
     let charge = 0;
+    let serviceString = "";
     for (let key in washType) {
       if (washType[key]) {
         switch (key) {
           case "wash":
             charge += product.prodCharges[0];
+            serviceString += " Washing,";
             break;
           case "iron":
             charge += product.prodCharges[1];
+            serviceString += " Ironing,";
             break;
           case "dryClean":
             charge += product.prodCharges[2];
+            serviceString += " Dry cleaning,";
             break;
           case "bleaching":
             charge += product.prodCharges[3];
+            serviceString += " Chemical wash,";
             break;
           default:
             charge += 0;
         }
       }
     }
-    return charge;
+    return [charge, serviceString.substring(0, serviceString.length - 1).trim()];
   };
   
-  const charge = chargePerProd(product) * quantity;
+  const arr  = chargePerProd(product);
+  const chargePerItem = arr[0];
+  const serviceStr = arr[1];
 
   return (
-    <div>Implement Table</div>
+    <tr>
+      <td>{prodType}</td>
+      <td>{serviceStr}</td>
+      <td>{`${quantity} X ${chargePerItem} =`}</td>
+      <td>{`${quantity * chargePerItem}`}</td>
+    </tr>
   )
 }
-            //{order.map((orderChoice) => {
-              //return <PriceRow orderChoice={orderChoice} productTypes={productTypes} />;
-            //})}
