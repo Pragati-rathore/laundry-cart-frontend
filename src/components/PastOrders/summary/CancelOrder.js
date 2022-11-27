@@ -10,13 +10,15 @@ export default function CancelOrder(props) {
     fetch("https://laundry-server.onrender.com/orders", {
       method: "DELETE",
       headers: {
+        "Content-Type": "application/json",
         authorization: `Bearer ${localStorage.getItem("laundry-token")}`,
       },
-      body: JSON.stringify({orderId})
+      body: JSON.stringify({ orderId }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.status === "success") navigate(0);
+        else window.alert(data.message);
       })
       .catch((err) => console.log(err));
   };

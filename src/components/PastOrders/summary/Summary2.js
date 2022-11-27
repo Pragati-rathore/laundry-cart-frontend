@@ -1,8 +1,8 @@
 import { useState} from "react";
 import CancelOrder from "./CancelOrder";
-import "./Summary.css";
+import "./Summary2.css";
 
-export default function Summary(props) {
+export default function Summary2(props) {
   const { orders, orderId, productTypes, cancelHandler, cancelPopup, cancelPopupHandler } = props;
 
   const order = orders.find((orderObj) => {
@@ -10,7 +10,6 @@ export default function Summary(props) {
     else return false;
   });
 
-  console.log(order, "dskagjfghjgsajfgjhsagfhgfsafaghjgfajgsj")
   const store = order.storeId;
 
   const [chargeObj, subTotal] = calculateSubTotal(
@@ -26,7 +25,7 @@ export default function Summary(props) {
   return (
     <>
       <div
-        className="summary-create-order"
+        className="summary-create-order2"
         style={{
           position: "fixed",
           top: 0,
@@ -41,7 +40,7 @@ export default function Summary(props) {
       {!isCancel && (
         <>
           <div
-            className="summary-createOrder"
+            className="summary-createOrder2"
             style={{
               position: "fixed",
               top: 0,
@@ -53,22 +52,22 @@ export default function Summary(props) {
               zIndex: 1000,
             }}
           >
-            <div className="header">
+            <div className="header2">
               <span>Summary</span>
-              <span className="close-order-summary" onClick={cancelHandler}>
+              <span className="close-order-summary2" onClick={cancelHandler}>
                 X
               </span>
             </div>
 
-            <div className="select-store-container">
-              <div id="select-store">{store.stName}</div>
-              <div id="store-address">
+            <div className="select-store-container2">
+              <div id="select-store2">{store.stName}</div>
+              <div id="store-address2">
                 <div>Store Address:</div>
                 <div>
                   {store.stAdd}
                 </div>
               </div>
-              <div id="store-phone">
+              <div id="store-phone2">
                 <div>Phone:</div>
                 <div>
                   {store.phone}
@@ -76,7 +75,7 @@ export default function Summary(props) {
               </div>
             </div>
 
-            <div className="price-table-container">
+            <div className="price-table-container2">
               <div>Order details</div>
               <table>
                 <tbody>
@@ -89,15 +88,15 @@ export default function Summary(props) {
                       />
                     );
                   })}
-                  <tr id="sub-total">
+                  <tr id="sub-total2">
                     <td colSpan={3}>SubTotal: </td>
                     <td>{subTotal}</td>
                   </tr>
-                  <tr id="pickup-charge">
+                  <tr id="pickup-charge2">
                     <td colSpan={3}>Pickup Charge: </td>
                     <td>{subTotal > 0 ? "90" : "0"}</td>
                   </tr>
-                  <tr id="total-price">
+                  <tr id="total-price2">
                     <td colSpan={3}>Total: </td>
                     <td>{subTotal > 0 ? `Rs ${subTotal + 90}` : "Rs 0"}</td>
                   </tr>
@@ -105,19 +104,20 @@ export default function Summary(props) {
               </table>
             </div>
 
-            <div className="address-wrapper">
+            <div className="address-wrapper2">
               <div>Address</div>
-              <div className="address-card-container">
-                      <div className="address-card">
+              <div className="address-card-container2">
+                      <div className="address-card2">
                         <p>{order.add.addName}</p>
                         <div>{`${order.add.address}, ${order.add.district}, ${order.add.state}, ${order.add.pincode}`}</div>
                       </div>
               </div>
             </div>
 
-            <div className="submit-order">
+            <div className="submit-order2">
               <button
                 type="button"
+                id="cancel-btn3"
                 disabled={order.status ==="Ready to pickup" ? false : true}
                 onClick={(e) => {setIsCancel(true)}}
               >

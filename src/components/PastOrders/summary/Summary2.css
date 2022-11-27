@@ -1,9 +1,9 @@
-.summary-createOrder {
+.summary-createOrder2 {
     overflow-y: scroll;
     overflow-x: scroll;
 }
 
-.summary-createOrder .header {
+.summary-createOrder2 .header2 {
     width: 100%;
     background-color: #5861ae;
     height: 70px;
@@ -15,16 +15,16 @@
     justify-content: space-between;
 }
 
-.header span:first-child {
+.header2 span:first-child {
     margin: 0 15px;
 }
 
-.header .close-order-summary {
+.header2 .close-order-summary2 {
     margin: 0 15px;
     cursor: pointer;
 }
 
-.select-store-container {
+.select-store-container2 {
     display: flex;
     flex-flow: row wrap;
     gap: 20px;
@@ -35,14 +35,14 @@
     background-color: #f4f9ff;
 }
 
-#select-store select {
+#select-store2 select {
     border: none;
     border-bottom: 2px solid #bababa;
     background-color: transparent;
     font-size: 1em;
 }
 
-.price-table-container {
+.price-table-container2 {
     box-sizing: border-box;
     width: 100%;
     padding: 15px 33px;
@@ -50,13 +50,13 @@
     border-bottom: 1px solid #00000029;
 }
 
-.price-table-container div:first-child {
+.price-table-container2 div:first-child {
     font-size: 14px;
     margin-bottom: 24px;
     font-weight: 400;
 }
 
-.price-table-container table {
+.price-table-container2 table {
     border-collapse: collapse;
     text-align: left;
     width: 100%;
@@ -64,35 +64,35 @@
     color: #1b2734;
 }
 
-.price-table-container table tr td:last-child {
+.price-table-container2 table tr td:last-child {
     text-align: right;
 }
 
-.price-table-container table tr td:first-child {
+.price-table-container2 table tr td:first-child {
     text-transform: capitalize;
 }
 
-.price-table-container table tr td:nth-child(3) {
+.price-table-container2 table tr td:nth-child(3) {
     text-align: right;
 }
 
-.price-table-container td {
+.price-table-container2 td {
     padding: 16px 15px;
 }
 
-#sub-total {
+#sub-total2 {
     border: none;
     border-bottom: 1px solid #00000029;
 }
 
-#sub-total td:first-child,
-#total-price td:first-child,
-#pickup-charge td:first-child {
+#sub-total2 td:first-child,
+#total-price2 td:first-child,
+#pickup-charge2 td:first-child {
     text-align: right;
     color: #1b2734;
 }
 
-#total-price {
+#total-price2 {
     border: none;
     font-size: 18px;
     font-weight: 800;
@@ -101,11 +101,11 @@
     color: white;
 }
 
-#total-price td:first-child {
+#total-price2 td:first-child {
     color: white;
 }
 
-.address-wrapper {
+.address-wrapper2 {
     padding: 15px 33px;
     width: 100%;
     box-sizing: border-box;
@@ -113,12 +113,12 @@
     color: #3b3737;
 }
 
-.address-wrapper div:first-child {
+.address-wrapper2 div:first-child {
     font-size: 14px;
     margin-bottom: 20px;
 }
 
-.address-card-container {
+.address-card-container2 {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -126,7 +126,7 @@
     gap: 20px;
 }
 
-.address-card {
+.address-card2 {
     width: 220px;
     box-shadow: 0px 3px 6px #00000029;
     border: 1px solid #00000029;
@@ -135,11 +135,11 @@
     position: relative;
 }
 
-.address-card-container .address-card:first-child {
+.address-card-container2 .address-card2:first-child {
     border: 1px solid #5861ae;
 }
 
-.address-card-container .address-card:first-child::before {
+.address-card-container2 .address-card2:first-child::before {
     content: "\2713";
     color: #5861ae;
     position: absolute;
@@ -147,24 +147,24 @@
     font-weight: bold;
 }
 
-.address-card p {
+.address-card2 p {
     padding: 0;
     margin: 0;
     font-weight: bold;
 }
 
-.address-card div {
+.address-card2 div {
     margin-top: 10px;
     text-transform: capitalize;
 }
 
-#add-new-address-btn {
+#add-new-address-btn2 {
     color: #5861ae;
     font-weight: bold;
     cursor: pointer;
 }
 
-.submit-order {
+.submit-order2 {
     box-sizing: border-box;
     width: 100%;
     background-color: #f4f4f4;
@@ -174,16 +174,17 @@
     justify-content: flex-end;
 }
 
-.submit-order button {
+.submit-order2 button {
     box-sizing: border-box;
     width: 150px;
     height: 30px;
     font-size: 16px;
     margin: 5px 33px;
-    background: #5861ae 0% 0% no-repeat padding-box;
+    background: #F41313 0% 0% no-repeat padding-box;
     border: none;
     cursor: pointer;
     border-radius: 4px;
     opacity: 1;
     color: white;
 }
+

@@ -5,7 +5,7 @@ import CreateOrderButton from "../createOrderButton";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Summary from "./summary/Summary";
+import Summary2 from "./summary/Summary2";
 
 function PastOrder() {
   const [orders, setOrders] = useState([]);
@@ -193,7 +193,7 @@ function PastOrder() {
         </div>
       )}
       {isSummary && (
-        <Summary
+        <Summary2
           orderId={selectedOrderId}
           orders={orders}
           productTypes={productTypes}
