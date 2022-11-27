@@ -12,7 +12,7 @@ export default function Summary(props) {
   });
   const [chargeObj, subTotal] = calculateSubTotal(order, productTypes);
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ _id: "", address: [] });
 
   useEffect(() => {
     fetch("https://laundry-server.onrender.com/stores")
@@ -31,23 +31,22 @@ export default function Summary(props) {
     fetch("https://laundry-server.onrender.com/users", {
       method: "GET",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("laundry-token")}`
-      }
+        authorization: `Bearer ${localStorage.getItem("laundry-token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.dir( data);
         if (data.status !== "failed") {
           setUser(data.user);
         } else {
-          throw new Error("Fetching available stores failed");
+          throw new Error("Fetching user detail failed");
         }
       })
       .catch((err) => console.log(err));
   }, []);
-  
+
   //useEffect(() => {
-    //console.log(user);
+  //console.log(user);
   //}, [user]);
 
   return (
@@ -126,25 +125,54 @@ export default function Summary(props) {
           <div>Order details</div>
           <table>
             <tbody>
-            {order.map((orderChoice) => {
-              return <PriceRow key={orderChoice.prodName} orderChoice={orderChoice} chargeObj={chargeObj} />;
-            })}
-            <tr id="sub-total"><td>SubTotal: </td><td>{subTotal}</td></tr>
-            <tr id="pickup-charge"><td>Service Charge: </td><td>90</td></tr>
-            <tr id="total-price"><td>Total: </td><td>{`Rs ${subTotal + 90}`}</td></tr>
-              </tbody>
+              {order.map((orderChoice) => {
+                return (
+                  <PriceRow
+                    key={orderChoice.prodName}
+                    orderChoice={orderChoice}
+                    chargeObj={chargeObj}
+                  />
+                );
+              })}
+              <tr id="sub-total">
+                <td>SubTotal: </td>
+                <td>{subTotal}</td>
+              </tr>
+              <tr id="pickup-charge">
+                <td>Service Charge: </td>
+                <td>90</td>
+              </tr>
+              <tr id="total-price">
+                <td>Total: </td>
+                <td>{`Rs ${subTotal + 90}`}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
 
-        <div className="address-card-container"></div>
+        <div className="address-wrapper">
+          <div>Address</div>
+          <div className="address-card-container">
+            {user.address.length > 0 &&
+              user.address.map((address) => {
+                return (
+                  <div key={address._id} className="address-card">
+                    <p>{address.addName}</p>
+                    <div>{`${address.address}, ${address.district}, ${address.state}, ${address.pincode}`}</div>
+                  </div>
+                );
+              })}
+            <div id="add-new-address-btn">ADD NEW</div>
+          </div>
+        </div>
       </div>
     </>
   );
 }
 
 function PriceRow(props) {
-  const { prodType, quantity} = props.orderChoice;
-  const {chargeObj} = props;
+  const { prodType, quantity } = props.orderChoice;
+  const { chargeObj } = props;
   const serviceString = chargeObj[prodType][1];
   const chargePerProd = chargeObj[prodType][0];
 
@@ -155,48 +183,53 @@ function PriceRow(props) {
       <td>{`${quantity} X ${chargePerProd} =`}</td>
       <td>{`${quantity * chargePerProd}`}</td>
     </tr>
-  )
+  );
 }
 
 function calculateSubTotal(order, productTypes) {
   let subTotal = 0;
   let chargeObj = {};
-  order.forEach(orderChoice => {
-  const { prodType, quantity, washType} = orderChoice;
-  const product = productTypes.find(product => product.prodName === prodType);
+  order.forEach((orderChoice) => {
+    const { prodType, quantity, washType } = orderChoice;
+    const product = productTypes.find(
+      (product) => product.prodName === prodType
+    );
 
-  const chargePerProd = (product) => {
-    let charge = 0;
-    let serviceString = "";
-    for (let key in washType) {
-      if (washType[key]) {
-        switch (key) {
-          case "wash":
-            charge += product.prodCharges[0];
-            serviceString += " Washing,";
-            break;
-          case "iron":
-            charge += product.prodCharges[1];
-            serviceString += " Ironing,";
-            break;
-          case "dryClean":
-            charge += product.prodCharges[2];
-            serviceString += " Dry cleaning,";
-            break;
-          case "bleaching":
-            charge += product.prodCharges[3];
-            serviceString += " Chemical wash,";
-            break;
-          default:
-            charge += 0;
+    const chargePerProd = (product) => {
+      let charge = 0;
+      let serviceString = "";
+      for (let key in washType) {
+        if (washType[key]) {
+          switch (key) {
+            case "wash":
+              charge += product.prodCharges[0];
+              serviceString += " Washing,";
+              break;
+            case "iron":
+              charge += product.prodCharges[1];
+              serviceString += " Ironing,";
+              break;
+            case "dryClean":
+              charge += product.prodCharges[2];
+              serviceString += " Dry cleaning,";
+              break;
+            case "bleaching":
+              charge += product.prodCharges[3];
+              serviceString += " Chemical wash,";
+              break;
+            default:
+              charge += 0;
+          }
         }
       }
-    }
-    return [charge, serviceString.substring(0, serviceString.length - 1).trim()]; 
-  };
+      return [
+        charge,
+        serviceString.substring(0, serviceString.length - 1).trim(),
+      ];
+    };
     let [c, serviceString] = chargePerProd(product);
     chargeObj[prodType] = [c, serviceString];
     subTotal += c * quantity;
-  })
+  });
   return [chargeObj, subTotal];
 }
