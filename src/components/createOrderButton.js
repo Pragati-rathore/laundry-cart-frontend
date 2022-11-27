@@ -18,7 +18,7 @@ function CreateOrderButton(){
         </div>
         <div className="create_order">
             <p>No Order Available</p>
-            <Link to ="/create-order"><button>Create</button></Link>
+            <Link to ="/orders/new"><button>Create</button></Link>
             {/* <a href="" ><button>Create</button></a> */}
             {/* <button onClick={navigateToSummary}>summary</button> */}
         </div>

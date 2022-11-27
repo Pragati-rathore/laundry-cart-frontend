@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import "./pastOrder.css";
 import eyeIcon from "../../images/eye.png";
+import CreateOrderButton from "../createOrderButton";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function PastOrder() {
   const [orders, setOrders] = useState([]);
   const [searchStr, setSearchStr] = useState("");
-  const [isCancel, setIsCancel] = useState(false);
-  const [isSummary, setIsSummary] = useState(false);
-  const [selectedOrderId, setSelectedOrderId] = useState("");
+  //const [isCancel, setIsCancel] = useState(false);
+  //const [isSummary, setIsSummary] = useState(false);
+  //const [selectedOrderId, setSelectedOrderId] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,11 +30,11 @@ function PastOrder() {
         }
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [navigate]);
 
   return (
     <>
-      <div className="pastOrder">
+      {orders.length > 0 && <div className="pastOrder">
         <div className="table-order-main-header">
           <div className="table-main-header-data">
             <h4 style={{ fontSize: "18px" }}>Orders |</h4>
@@ -137,8 +138,8 @@ function PastOrder() {
                     <p
                       id="cancel-text-cell"
                       onClick={(e) => {
-                        setIsCancel(true);
-                        setSelectedOrderId(order._id);
+                        //setIsCancel(true);
+                        //setSelectedOrderId(order._id);
                       }}
                     >
                       Cancel Order
@@ -153,7 +154,8 @@ function PastOrder() {
           })}
           </div>
         </div>
-      </div>
+      </div>}
+      {orders.length === 0 && <CreateOrderButton/>}
     </>
   );
 }
