@@ -10,6 +10,7 @@ export default function Summary(props) {
     stAdd: "",
     phone: null,
   });
+  const subTotal = calculateSubTotal(order, productTypes);
 
   useEffect(() => {
     fetch("https://laundry-server.onrender.com/stores")
@@ -105,6 +106,9 @@ export default function Summary(props) {
             {order.map((orderChoice) => {
               return <PriceRow orderChoice={orderChoice} productTypes={productTypes} />;
             })}
+            <tr id="sub-total"><td>{subTotal}</td></tr>
+            <tr id="pickup-charge"><td>90</td></tr>
+            <tr id="total-price"><td>{`Rs ${subTotal + 90}`}</td></tr>
           </table>
         </div>
       </div>
@@ -160,4 +164,40 @@ function PriceRow(props) {
       <td>{`${quantity * chargePerItem}`}</td>
     </tr>
   )
+}
+
+function calculateSubTotal(order, productTypes) {
+  let subTotal = 0;
+  order.forEach(orderChoice => {
+  const { prodType, quantity, washType} = orderChoice;
+  const product = productTypes.find(product => product.prodName === prodType);
+
+  const chargePerProd = (product) => {
+    let charge = 0;
+    for (let key in washType) {
+      if (washType[key]) {
+        switch (key) {
+          case "wash":
+            charge += product.prodCharges[0];
+            break;
+          case "iron":
+            charge += product.prodCharges[1];
+            break;
+          case "dryClean":
+            charge += product.prodCharges[2];
+            break;
+          case "bleaching":
+            charge += product.prodCharges[3];
+            break;
+          default:
+            charge += 0;
+        }
+      }
+    }
+    return charge; 
+  };
+
+    subTotal += chargePerProd(product) * quantity;
+  })
+  return subTotal;
 }
