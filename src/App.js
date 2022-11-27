@@ -12,7 +12,7 @@ import PastOrder from "./components/PastOrders/pastOrder";
 import CreateOrder from "./components/createOrder/CreateOrder";
 
 // import "./components/summary.css"
- import PastSummary from './components/PastOrders/pastSummary';
+ //import PastSummary from './components/PastOrders/pastSummary';
 
 function App() {
   return (
