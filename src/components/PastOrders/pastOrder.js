@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function PastOrder() {
   const [orders, setOrders] = useState([]);
+  const [searchStr, setSearchStr] = useState("");
   const [isCancel, setIsCancel] = useState(false);
   const [isSummary, setIsSummary] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState("");
@@ -44,9 +45,9 @@ function PastOrder() {
             <div className="search-bar">
               <i
                 style={{ color: "#a0a0a0" }}
-                class="fa-solid fa-magnifying-glass"
+                className="fa-solid fa-magnifying-glass"
               ></i>
-              <input type="text" />{" "}
+              <input type="text" onChange={e => setSearchStr(e.target.value)} placeholder="Search orders"/>
             </div>
           </div>
         </div>
@@ -86,7 +87,12 @@ function PastOrder() {
 
           <div id="past-order-rows-wrapper">
         {orders.length > 0 &&
-          orders.map((order) => {
+            orders.filter(order => {
+              if (searchStr==="") return true;
+              else {
+                return new RegExp(searchStr, "igm").test(order.storeId.stName);
+              }
+            }).map((order) => {
             let date = new Date(order.createdAt);
             let dateStr = `${date
               .toTimeString()

@@ -5,7 +5,7 @@ const Footer=()=>{
     return(
         <>
         <footer id="footer">
-        <p className="footer_para"> 2022 <span className="circle">C</span> Laundry</p>
+        <p className="footer_para"> 2022 &#169; Laundry</p>
         </footer>
         </>
     )

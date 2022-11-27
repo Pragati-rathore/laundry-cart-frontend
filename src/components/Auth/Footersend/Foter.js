@@ -1,6 +1,8 @@
-import React from 'react'
-import "./FoterStyle.css"
-import Footer from "../../footer"
+import React from "react";
+import "./FoterStyle.css";
+import fb from "../../../images/facebook.jpg";
+import insta from "../../../images/instagram.jpg";
+import ln from "../../../images/linkedin.jpg";
 
 const Foter = () => {
   return (
@@ -15,14 +17,13 @@ const Foter = () => {
       </div>
       <div
         style={{
-          backgroundImage: `url('/assets/Footer.svg')`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           top: "0px",
         }}
         className="footer-container"
       >
-       <div className="footer-aboutUs">
+        <div className="footer-aboutUs">
           <p style={{ fontSize: "18px" }}>ABOUT US</p>
           <p className="footer-light-text">Doorstep Wash & Dryclean Service</p>
         </div>
@@ -45,17 +46,15 @@ const Foter = () => {
         <div className="footer-social">
           <p style={{ fontSize: "18px" }}>SOCIAL MEDIA</p>
           <div className="footer-icon-div">
-            <img className="footer-icon"  src="./facebook.svg" alt=""/>
-            <img className="footer-icon"  src="./instagram.svg" alt=""/>
-            <img className="footer-icon"  src="./linkedin.svg" alt=""/>
+            <img className="footer-icon" src={fb} alt="" />
+            <img className="footer-icon" src={insta} alt="" />
+            <img className="footer-icon" src={ln} alt="" />
           </div>
         </div>
-        
       </div>
-      <Footer/>
     </div>
     // </div>
-  )
-}
+  );
+};
 
-export default Foter
+export default Foter;
