@@ -1,0 +1,48 @@
+.order-success2 {
+    box-sizing: border-box;
+    width: 410px;
+    height: 210px;
+    background-color: white;
+    border-radius: 2px;
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    color: #0A1F44;
+    font-size: 17px;
+}
+
+.order-success2 div:nth-child(2) {
+    font-size: 14px;
+}
+
+.order-success2 button {
+    border-radius: 4px;
+    background-color: #5861AE;
+    color: white;
+    font-size: inherit;
+    width: 107px;
+    height: 32px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.cancel-header2 {
+    background-color: #5861AE;
+    width: 100%;
+    border-radius: 2px 2px 1px 1px;
+    display: flex;
+    height: 43px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px;
+    box-sizing: border-box;
+    color: white;
+}
+
+#close-cancel-popup2 {
+    cursor: pointer;
+}

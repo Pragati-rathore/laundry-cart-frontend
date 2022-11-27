@@ -1,0 +1,190 @@
+.summary-createOrder2 {
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+.summary-createOrder2 .header2 {
+    width: 100%;
+    background-color: #5861ae;
+    height: 70px;
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header2 span:first-child {
+    margin: 0 15px;
+}
+
+.header2 .close-order-summary2 {
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.select-store-container2 {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 98px;
+    background-color: #f4f9ff;
+}
+
+#select-store2 select {
+    border: none;
+    border-bottom: 2px solid #bababa;
+    background-color: transparent;
+    font-size: 1em;
+}
+
+.price-table-container2 {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px 33px;
+    font-size: 16px;
+    border-bottom: 1px solid #00000029;
+}
+
+.price-table-container2 div:first-child {
+    font-size: 14px;
+    margin-bottom: 24px;
+    font-weight: 400;
+}
+
+.price-table-container2 table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    color: #1b2734;
+}
+
+.price-table-container2 table tr td:last-child {
+    text-align: right;
+}
+
+.price-table-container2 table tr td:first-child {
+    text-transform: capitalize;
+}
+
+.price-table-container2 table tr td:nth-child(3) {
+    text-align: right;
+}
+
+.price-table-container2 td {
+    padding: 16px 15px;
+}
+
+#sub-total2 {
+    border: none;
+    border-bottom: 1px solid #00000029;
+}
+
+#sub-total2 td:first-child,
+#total-price2 td:first-child,
+#pickup-charge2 td:first-child {
+    text-align: right;
+    color: #1b2734;
+}
+
+#total-price2 {
+    border: none;
+    font-size: 18px;
+    font-weight: 800;
+    width: 100%;
+    background-color: #5861ae;
+    color: white;
+}
+
+#total-price2 td:first-child {
+    color: white;
+}
+
+.address-wrapper2 {
+    padding: 15px 33px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #3b3737;
+}
+
+.address-wrapper2 div:first-child {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.address-card-container2 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.address-card2 {
+    width: 220px;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #00000029;
+    border-radius: 4px;
+    padding: 5px;
+    position: relative;
+}
+
+.address-card-container2 .address-card2:first-child {
+    border: 1px solid #5861ae;
+}
+
+.address-card-container2 .address-card2:first-child::before {
+    content: "\2713";
+    color: #5861ae;
+    position: absolute;
+    right: 8px;
+    font-weight: bold;
+}
+
+.address-card2 p {
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.address-card2 div {
+    margin-top: 10px;
+    text-transform: capitalize;
+}
+
+#add-new-address-btn2 {
+    color: #5861ae;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-order2 {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.submit-order2 button {
+    box-sizing: border-box;
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    margin: 5px 33px;
+    background: #F41313 0% 0% no-repeat padding-box;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    opacity: 1;
+    color: white;
+}
+
