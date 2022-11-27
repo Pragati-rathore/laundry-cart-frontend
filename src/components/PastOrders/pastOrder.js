@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./pastOrder.css";
+import eyeIcon from "../../images/eye.png";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function PastOrder() {
   const [orders, setOrders] = useState([]);
   const [isCancel, setIsCancel] = useState(false);
+  const [isSummary, setIsSummary] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState("");
   const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ function PastOrder() {
           </div>
           <div className="table-create-search">
             <div>
-              <button className="create-button">Create</button>
+              <button className="create-button" onClick={_e => navigate("/orders/new")}>Create</button>
             </div>
             <div className="search-bar">
               <i
@@ -49,6 +51,7 @@ function PastOrder() {
           </div>
         </div>
 
+        <div className="past-order-table-wrapper">
         <div className="tablePast">
           <div className="orders-table-header">
             <div className="column">
@@ -81,6 +84,7 @@ function PastOrder() {
           </div>
         </div>
 
+          <div id="past-order-rows-wrapper">
         {orders.length > 0 &&
           orders.map((order) => {
             let date = new Date(order.createdAt);
@@ -136,11 +140,13 @@ function PastOrder() {
                   ) : null}
                 </div>
                 <div className="column">
-                  <p>eye</p>
+                  <p><img src={eyeIcon} alt="view"/></p>
                 </div>
               </div>
             );
           })}
+          </div>
+        </div>
       </div>
     </>
   );
