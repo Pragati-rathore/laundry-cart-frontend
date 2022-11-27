@@ -126,26 +126,26 @@ function PriceRow(props) {
         switch (key) {
           case "wash":
             charge += product.prodCharges[0];
-            serviceString += "Washing,";
+            serviceString += " Washing,";
             break;
           case "iron":
             charge += product.prodCharges[1];
-            serviceString += "Ironing,";
+            serviceString += " Ironing,";
             break;
           case "dryClean":
             charge += product.prodCharges[2];
-            serviceString += "Dry cleaning,";
+            serviceString += " Dry cleaning,";
             break;
           case "bleaching":
             charge += product.prodCharges[3];
-            serviceString += "Chemical wash,";
+            serviceString += " Chemical wash,";
             break;
           default:
             charge += 0;
         }
       }
     }
-    return [charge, serviceString.substring(0, serviceString.length - 1)];
+    return [charge, serviceString.substring(0, serviceString.length - 1).trim()];
   };
   
   const arr  = chargePerProd(product);
