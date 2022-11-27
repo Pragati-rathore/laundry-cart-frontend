@@ -1,32 +1,28 @@
 .sidebar{
     background-color: #5861AE;
-    /* width: 25px;
-    height: 100%; */
-    top: -1.5px;
-    left: 0px;
     width: 49px;
-    height: 931px;
-    /* height: 100%; */
-    padding: 0px;
+    padding: 20px 0 50px;
     margin: 0px;
-    display: inline-block;
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
 
+.home {
+    padding: 10px 0;
+    cursor: pointer;
 }
-.home{
-    padding-left: 13px;
-    padding-top: 0px;
-    margin: 0px;
+
+.plus {
+    cursor: pointer;
 }
-.plus{
-    padding-left: 13px;
-    padding-top: 15px;
-    margin-top: 15px;
-}
+
 #content{
-    
+    cursor: pointer;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
     background-color:#FFFFFF ;
-    padding-left: 13px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin-top: 20px;
 }
