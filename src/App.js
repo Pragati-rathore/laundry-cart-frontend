@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import NavbarAndFooter from "./components/NavbarAndFooter";
+import Signin from "./components/Auth/Signin/Signin";
 
 //import SideBar from "./components/Home/sidebar";
 //import Footer from "./components/Home/footer";
@@ -21,8 +22,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/signin" element={<NavbarAndFooter/>}>
-            <Route index element={<CreateOrder/>}/>
+          <Route path="/" element={<NavbarAndFooter/>}>
+            <Route path="signin" element={<Signin/>}/>
+            <Route path="createorder" element={<CreateOrder/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

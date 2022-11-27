@@ -4,8 +4,6 @@ import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import "./Signin.css";
 import lock from "../lock.svg";
-import Header from "../../header";
-import Foter from "../Footersend/Foter";
 
 const Signin = () => {
   // const histroy=useHistroy()
@@ -38,7 +36,7 @@ const Signin = () => {
  
   }
   return (
-    <> <Header/>
+    <>
       <div className="signin-cont">
         <div className="signin-cont-left">
           <h1 className="signin-cont-laundryhead">Laundry Service</h1>
@@ -91,7 +89,6 @@ const Signin = () => {
           </form>
         </div>
       </div>
-      <Foter/>
     </>
   );
 };
