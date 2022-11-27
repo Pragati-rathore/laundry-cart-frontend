@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import ProductRow from "./ProductRow";
 import Summary from "./Summary";
-import './CreateOrder.css';
+import "./CreateOrder.css";
+import { useNavigate } from "react-router-dom";
 
 //images
 import searchIcon from "../../images/search.svg";
@@ -12,6 +13,7 @@ export default function CreateOrder(props) {
   const [order, setOrder] = useState([]); //[{productSchema}] {prodType:"prodName", quantity, washType:{wash, iron, dryClean}}
   //summary related
   const [showSummary, setShowSummary] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("https://laundry-server.onrender.com/products")
@@ -73,8 +75,8 @@ export default function CreateOrder(props) {
               wash: false,
               iron: false,
               dryClean: false,
-              bleaching: false
-            }
+              bleaching: false,
+            };
             return order;
           }
           return order;
@@ -91,52 +93,74 @@ export default function CreateOrder(props) {
         <h2>Create Order</h2>
         <div className="search-box">
           <div className="search-icon-container">
-          <img src={searchIcon} alt="" />
+            <img src={searchIcon} alt="" />
           </div>
-        <input
-          type="text"
-          name="searchproduct"
-          placeholder="Search Product"
-          onChange={(e) => {
-            setSearchProduct(e.target.value);
-          }}
-          value={searchProduct}
-        />
+          <input
+            type="text"
+            name="searchproduct"
+            placeholder="Search Product"
+            onChange={(e) => {
+              setSearchProduct(e.target.value);
+            }}
+            value={searchProduct}
+          />
         </div>
       </div>
-        <table className="create-order">
-          <thead>
-            <tr>
-              <th>Product Types</th>
-              <th>Quantity</th>
-              <th>Wash Types</th>
-              <th>Price</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {productTypes
-              .filter((product) =>
-                new RegExp(searchProduct).test(product.prodName)
-              )
-              .map((product) => (
-                <ProductRow
-                  key={product._id}
-                  product={product}
-                  order={order}
-                  onChangeOrderHandler={onChangeOrderHandler}
-                />
-              ))}
-          </tbody>
-        </table>
+      <table className="create-order">
+        <thead>
+          <tr>
+            <th>Product Types</th>
+            <th>Quantity</th>
+            <th>Wash Types</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {productTypes
+            .filter((product) =>
+              new RegExp(searchProduct).test(product.prodName)
+            )
+            .map((product) => (
+              <ProductRow
+                key={product._id}
+                product={product}
+                order={order}
+                onChangeOrderHandler={onChangeOrderHandler}
+              />
+            ))}
+        </tbody>
+      </table>
       <div className="proceed-btns-container">
-        {/*TODO add navigate to order history when cancelled*/}
-        <button id="btn-cancel" type="button" onClick={(e) => {console.log("IMPLEMENT SO IT GOES TO ORDER HISTORY")}}>Cancel</button>
-        <button id="btn-proceed" type="button" onClick={(e) => setShowSummary(true)}>Proceed</button>
+        <button
+          id="btn-cancel"
+          type="button"
+          onClick={(_e) => navigate("/orders")}
+        >
+          Cancel
+        </button>
+        <button
+          id="btn-proceed"
+          type="button"
+          onClick={(_e) => setShowSummary(true)}
+        >
+          Proceed
+        </button>
       </div>
 
-    {/*summary*/}
-      {showSummary && <Summary order={order} cancelHandler={() => setShowSummary(false)} productTypes={productTypes}/>}
+      {showSummary && (
+        <Summary
+          order={order.filter((productObj) => {
+            //filters empty product orders
+            return (
+              productObj.quantity > 0 &&
+              Object.entries(productObj.washType).some((arr) => arr[1])
+            );
+          })}
+          cancelHandler={() => setShowSummary(false)}
+          productTypes={productTypes}
+        />
+      )}
     </div>
   );
 }

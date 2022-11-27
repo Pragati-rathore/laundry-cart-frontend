@@ -3,6 +3,7 @@ import "./Summary.css";
 
 export default function Summary(props) {
   const { order, cancelHandler, productTypes } = props;
+  console.log(order, "filtered");
   const [stores, setStores] = useState([]);
   const [selectedStore, setSelectedStore] = useState({
     _id: "",
