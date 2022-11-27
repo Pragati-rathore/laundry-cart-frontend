@@ -1,7 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import "./pastOrder.css";
+import { useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 
 function PastOrder() {
+  const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
+    
+  useEffect(()=> {
+    fetch("https://laundry-server.onrender.com/orders", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("laundry-token")}`
+      }
+    }).then(res=> res.json()).then(data=> {
+      if (data.status==="failed") {
+        navigate("/");
+      }
+      if (data.status==="success") {
+        setOrders(data.orders);
+      }
+    }).catch(err => console.log(err));
+  }, []);
+
   return (
     <>
       <div className="pastOrder">

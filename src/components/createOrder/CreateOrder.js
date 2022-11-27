@@ -136,7 +136,7 @@ export default function CreateOrder(props) {
       </div>
 
     {/*summary*/}
-      {showSummary && <Summary order={order} cancelHandler={() => setShowSummary(false)}/>}
+      {showSummary && <Summary order={order} cancelHandler={() => setShowSummary(false)} productTypes={productTypes}/>}
     </div>
   );
 }
