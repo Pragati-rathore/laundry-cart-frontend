@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Summary.css";
 
 export default function Summary(props) {
@@ -11,6 +12,7 @@ export default function Summary(props) {
     phone: null,
   });
   const [chargeObj, subTotal] = calculateSubTotal(order, productTypes);
+  const [isOrderSuccess, setIsOrderSuccess] = useState(false);
 
   const [user, setUser] = useState({ _id: "", address: [] });
 
@@ -49,6 +51,42 @@ export default function Summary(props) {
   //console.log(user);
   //}, [user]);
 
+  const handleOrder = (e) => {
+    e.preventDefault();
+    if (subTotal <= 0) {
+      window.alert("Choose some sevices first");
+      return;
+    }
+    if (selectedStore._id === "") {
+      window.alert("Select a store");
+    }
+    if (subTotal > 0 && selectedStore._id !== "") {
+      fetch("https://laundry-server.onrender.com/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("laundry-token")}`,
+        },
+        body: JSON.stringify({
+          storeId: selectedStore._id,
+          order,
+          add: user.address[0],
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.status === "success") {
+            setIsOrderSuccess(true);
+          }
+          if (data.status === "failed") {
+            window.alert(data.message);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   return (
     <>
       <div
@@ -64,108 +102,123 @@ export default function Summary(props) {
           zIndex: 500,
         }}
       ></div>
-      <div
-        className="summary-createOrder"
-        style={{
-          position: "fixed",
-          top: 0,
-          right: 0,
-          backgroundColor: "white",
-          width: "800px",
-          height: "100vh",
-          maxWidth: "100vw",
-          zIndex: 1000,
-        }}
-      >
-        <div className="header">
-          <span>Summary</span>
-          <span className="close-order-summary" onClick={cancelHandler}>
-            X
-          </span>
-        </div>
+      {!isOrderSuccess && (
+        <>
+          <div
+            className="summary-createOrder"
+            style={{
+              position: "fixed",
+              top: 0,
+              right: 0,
+              backgroundColor: "white",
+              width: "800px",
+              height: "100vh",
+              maxWidth: "100vw",
+              zIndex: 1000,
+            }}
+          >
+            <div className="header">
+              <span>Summary</span>
+              <span className="close-order-summary" onClick={cancelHandler}>
+                X
+              </span>
+            </div>
 
-        <div className="select-store-container">
-          <div id="select-store">
-            <select
-              value={selectedStore._id}
-              placeholder="Select Store"
-              onChange={(e) => {
-                if (e.target.value !== "") {
-                  setSelectedStore(
-                    stores.find((store) => store._id === e.target.value)
-                  );
-                }
-              }}
-            >
-              <option value="">--Select a Store--</option>
-              {stores.map((store) => {
-                return (
-                  <option key={store._id} value={store._id}>
-                    {store.stName}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <div id="store-address">
-            <div>Store Address:</div>
-            <div>
-              {selectedStore.stAdd !== "" ? selectedStore.stAdd : "___"}
+            <div className="select-store-container">
+              <div id="select-store">
+                <select
+                  value={selectedStore._id}
+                  placeholder="Select Store"
+                  onChange={(e) => {
+                    if (e.target.value !== "") {
+                      setSelectedStore(
+                        stores.find((store) => store._id === e.target.value)
+                      );
+                    }
+                  }}
+                >
+                  <option value="">--Select a Store--</option>
+                  {stores.map((store) => {
+                    return (
+                      <option key={store._id} value={store._id}>
+                        {store.stName}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div id="store-address">
+                <div>Store Address:</div>
+                <div>
+                  {selectedStore.stAdd !== "" ? selectedStore.stAdd : "___"}
+                </div>
+              </div>
+              <div id="store-phone">
+                <div>Phone:</div>
+                <div>
+                  {selectedStore.phone !== null ? selectedStore.phone : "___"}
+                </div>
+              </div>
+            </div>
+
+            <div className="price-table-container">
+              <div>Order details</div>
+              <table>
+                <tbody>
+                  {order.map((orderChoice) => {
+                    return (
+                      <PriceRow
+                        key={orderChoice.prodName}
+                        orderChoice={orderChoice}
+                        chargeObj={chargeObj}
+                      />
+                    );
+                  })}
+                  <tr id="sub-total">
+                    <td>SubTotal: </td>
+                    <td>{subTotal}</td>
+                  </tr>
+                  <tr id="pickup-charge">
+                    <td>Service Charge: </td>
+                    <td>{subTotal > 0 ? "90" : "0"}</td>
+                  </tr>
+                  <tr id="total-price">
+                    <td>Total: </td>
+                    <td>{subTotal > 0 ? `Rs ${subTotal + 90}` : "Rs 0"}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="address-wrapper">
+              <div>Address</div>
+              <div className="address-card-container">
+                {user.address.length > 0 &&
+                  user.address.map((address) => {
+                    return (
+                      <div key={address._id} className="address-card">
+                        <p>{address.addName}</p>
+                        <div>{`${address.address}, ${address.district}, ${address.state}, ${address.pincode}`}</div>
+                      </div>
+                    );
+                  })}
+                <div id="add-new-address-btn">ADD NEW</div>
+              </div>
+            </div>
+
+            <div className="submit-order">
+              <button
+                type="button"
+                disabled={subTotal > 0 ? false : true}
+                onClick={(e) => handleOrder(e)}
+              >
+                Confirm
+              </button>
             </div>
           </div>
-          <div id="store-phone">
-            <div>Phone:</div>
-            <div>
-              {selectedStore.phone !== null ? selectedStore.phone : "___"}
-            </div>
-          </div>
-        </div>
-
-        <div className="price-table-container">
-          <div>Order details</div>
-          <table>
-            <tbody>
-              {order.map((orderChoice) => {
-                return (
-                  <PriceRow
-                    key={orderChoice.prodName}
-                    orderChoice={orderChoice}
-                    chargeObj={chargeObj}
-                  />
-                );
-              })}
-              <tr id="sub-total">
-                <td>SubTotal: </td>
-                <td>{subTotal}</td>
-              </tr>
-              <tr id="pickup-charge">
-                <td>Service Charge: </td>
-                <td>90</td>
-              </tr>
-              <tr id="total-price">
-                <td>Total: </td>
-                <td>{`Rs ${subTotal + 90}`}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div className="address-wrapper">
-          <div>Address</div>
-          <div className="address-card-container">
-            {user.address.length > 0 &&
-              user.address.map((address) => {
-                return (
-                  <div key={address._id} className="address-card">
-                    <p>{address.addName}</p>
-                    <div>{`${address.address}, ${address.district}, ${address.state}, ${address.pincode}`}</div>
-                  </div>
-                );
-              })}
-            <div id="add-new-address-btn">ADD NEW</div>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
+      {isOrderSuccess && <OrderSuccess />}
     </>
   );
 }
@@ -183,6 +236,37 @@ function PriceRow(props) {
       <td>{`${quantity} X ${chargePerProd} =`}</td>
       <td>{`${quantity * chargePerProd}`}</td>
     </tr>
+  );
+}
+
+function OrderSuccess(props) {
+  const navigate = useNavigate();
+  return (
+    <>
+      <div
+        className="order-confirm-wrapper"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 1001,
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div className="order-success">
+          <div className="check-icon">X</div>
+          <p>Your Order is successfully placed.</p>
+          <p>You can track the delivery in the "Orders" section.</p>
+          <button type="button" onClick={(_e) => navigate("/orders")}>
+            Go to orders
+          </button>
+        </div>
+      </div>
+    </>
   );
 }
 
