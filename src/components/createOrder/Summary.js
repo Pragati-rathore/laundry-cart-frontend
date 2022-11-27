@@ -11,8 +11,8 @@ export default function Summary(props) {
     stAdd: "",
     phone: null,
   });
-  const [chargeObj, subTotal] = calculateSubTotal(order, productTypes);
-  const [isOrderSuccess, setIsOrderSuccess] = useState(false);
+  const [chargeObj, subTotal, quantityTotal] = calculateSubTotal(order, productTypes);
+  const [isOrderSuccess, setIsOrderSuccess] = useState(true);
 
   const [user, setUser] = useState({ _id: "", address: [] });
 
@@ -70,6 +70,8 @@ export default function Summary(props) {
         body: JSON.stringify({
           storeId: selectedStore._id,
           order,
+          quantity: quantityTotal,
+          total: subTotal + 90,
           add: user.address[0],
         }),
       })
@@ -273,6 +275,7 @@ function OrderSuccess(props) {
 function calculateSubTotal(order, productTypes) {
   let subTotal = 0;
   let chargeObj = {};
+  let quantityTotal =0;
   order.forEach((orderChoice) => {
     const { prodType, quantity, washType } = orderChoice;
     const product = productTypes.find(
@@ -313,7 +316,8 @@ function calculateSubTotal(order, productTypes) {
     };
     let [c, serviceString] = chargePerProd(product);
     chargeObj[prodType] = [c, serviceString];
+    quantityTotal += quantity;
     subTotal += c * quantity;
   });
-  return [chargeObj, subTotal];
+  return [chargeObj, subTotal, quantityTotal];
 }
