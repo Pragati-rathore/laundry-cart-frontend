@@ -7,10 +7,15 @@
     width: 49px;
     height: 931px;
     /* height: 100%; */
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+
 }
 .home{
     padding-left: 13px;
     padding-top: 0px;
+    margin: 0px;
 }
 .plus{
     padding-left: 13px;
