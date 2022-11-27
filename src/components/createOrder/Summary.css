@@ -19,3 +19,21 @@
     cursor: pointer;
 }
 
+
+.select-store-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 98px;
+    background-color: #F4F9FF;
+}
+
+#select-store select {
+    border: none;
+    border-bottom: 2px solid #BABABA;
+    background-color: transparent;
+    font-size: 1em;
+}

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./Summary.css";
 
 export default function Summary(props) {
-  const { order, cancelHandler } = props;
+  const { order, cancelHandler, productTypes } = props;
   const [stores, setStores] = useState([]);
   const [selectedStore, setSelectedStore] = useState({
     _id: "",
@@ -62,6 +62,7 @@ export default function Summary(props) {
             X
           </span>
         </div>
+
         <div className="select-store-container">
           <div id="select-store">
             <select
@@ -98,7 +99,52 @@ export default function Summary(props) {
             </div>
           </div>
         </div>
+        <div className="price-table-container">
+          <div>Order details</div>
+          <table>
+            {order.map((orderChoice) => {
+              return <PriceRow orderChoice={orderChoice} productTypes={productTypes} />;
+            })}
+          </table>
+        </div>
       </div>
     </>
   );
+}
+
+function PriceRow(props) {
+  const { prodType, quantity, washType, productTypes } = props.orderChoice;
+
+  const product = productTypes.find(product => product.prodName === prodType);
+
+  const chargePerProd = (product) => {
+    let charge = 0;
+    for (let key in washType) {
+      if (washType[key]) {
+        switch (key) {
+          case "wash":
+            charge += product.prodCharges[0];
+            break;
+          case "iron":
+            charge += product.prodCharges[1];
+            break;
+          case "dryClean":
+            charge += product.prodCharges[2];
+            break;
+          case "bleaching":
+            charge += product.prodCharges[3];
+            break;
+          default:
+            charge += 0;
+        }
+      }
+    }
+    return charge;
+  };
+  
+  const charge = chargePerProd(product) * quantity;
+
+  return (
+    {charge > } 
+  )
 }
