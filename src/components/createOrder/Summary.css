@@ -1,6 +1,11 @@
+.summary-createOrder {
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
 .summary-createOrder .header {
     width: 100%;
-    background-color: #5861AE;
+    background-color: #5861ae;
     height: 70px;
     color: white;
     font-size: 22px;
@@ -19,7 +24,6 @@
     cursor: pointer;
 }
 
-
 .select-store-container {
     display: flex;
     flex-flow: row wrap;
@@ -28,12 +32,158 @@
     align-items: center;
     width: 100%;
     height: 98px;
-    background-color: #F4F9FF;
+    background-color: #f4f9ff;
 }
 
 #select-store select {
     border: none;
-    border-bottom: 2px solid #BABABA;
+    border-bottom: 2px solid #bababa;
     background-color: transparent;
     font-size: 1em;
+}
+
+.price-table-container {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px 33px;
+    font-size: 16px;
+    border-bottom: 1px solid #00000029;
+}
+
+.price-table-container div:first-child {
+    font-size: 14px;
+    margin-bottom: 24px;
+    font-weight: 400;
+}
+
+.price-table-container table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    color: #1b2734;
+}
+
+.price-table-container table tr td:last-child {
+    text-align: right;
+}
+
+.price-table-container table tr td:first-child {
+    text-transform: capitalize;
+}
+
+.price-table-container table tr td:nth-child(3) {
+    text-align: right;
+}
+
+.price-table-container td {
+    padding: 16px 15px;
+}
+
+#sub-total {
+    border: none;
+    border-bottom: 1px solid #00000029;
+}
+
+#sub-total td:first-child,
+#total-price td:first-child,
+#pickup-charge td:first-child {
+    text-align: right;
+    color: #1b2734;
+}
+
+#total-price {
+    border: none;
+    font-size: 18px;
+    font-weight: 800;
+    width: 100%;
+    background-color: #5861ae;
+    color: white;
+}
+
+#total-price td:first-child {
+    color: white;
+}
+
+.address-wrapper {
+    padding: 15px 33px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #3b3737;
+}
+
+.address-wrapper div:first-child {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.address-card-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.address-card {
+    width: 220px;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #00000029;
+    border-radius: 4px;
+    padding: 5px;
+    position: relative;
+}
+
+.address-card-container .address-card:first-child {
+    border: 1px solid #5861ae;
+}
+
+.address-card-container .address-card:first-child::before {
+    content: "\2713";
+    color: #5861ae;
+    position: absolute;
+    right: 8px;
+    font-weight: bold;
+}
+
+.address-card p {
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.address-card div {
+    margin-top: 10px;
+    text-transform: capitalize;
+}
+
+#add-new-address-btn {
+    color: #5861ae;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-order {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.submit-order button {
+    box-sizing: border-box;
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    margin: 5px 33px;
+    background: #5861ae 0% 0% no-repeat padding-box;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    opacity: 1;
+    color: white;
 }
