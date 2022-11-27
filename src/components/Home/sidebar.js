@@ -1,16 +1,26 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-import "./sidebar.css"
+import { useLocation, useNavigate } from "react-router-dom";
+import ContentIcon from "../../images/content.png";
+import PlusIcon from "../../images/plus.png";
+import HomeIcon from "../../images/home.png";
+import "./sidebar.css";
 
-const SideBar =()=>{
-    return(
+const SideBar = () => {
+    const navigate = useNavigate();
+    return (
         <>
-        <div className="sidebar">
-            <div className="home"><img src="/images/home.png" alt=""/></div>
-            <div className="plus"><img src="/images/plus.png" alt=""/></div>
-            <div id="content"><img src="/images/content.png" alt=""/></div>
-        </div>
+            <div className="sidebar">
+                <div className="home" onClick={(e) => navigate("/")}>
+                    <img src={HomeIcon} alt="" />
+                </div>
+                <div className="plus" onClick={(e) => navigate("/orders/new")}>
+                    <img src={PlusIcon} alt="" />
+                </div>
+                <div id="content" onClick={(e) => navigate("/orders")}>
+                    <img src={ContentIcon} alt="" />
+                </div>
+            </div>
         </>
-    )
-}
+    );
+};
 export default SideBar;

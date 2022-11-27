@@ -55,3 +55,10 @@
     float: right;
 }
 
+.heading h2 {
+    cursor: pointer;
+}
+
+.logout {
+    cursor: pointer;
+}

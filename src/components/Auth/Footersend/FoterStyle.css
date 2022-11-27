@@ -1,9 +1,6 @@
-
-
-
 .referral-div {
     font-family: open-sans, sans-serif;
-    width: 1920PX;
+    width: 100%;
     height: 80px;
     text-align: center;
     background: #F8F9FF 0% 0% no-repeat padding-box;
@@ -38,33 +35,34 @@
     width: 100%;
     display: flex; 
     font-family: 'Avenir', sans-serif;
+    background-image: url("../../../images/Footer.jpg");
 }
 
 
 .footer-aboutUs {
-    padding-left: 574px;
+    padding-left: 20px;
     padding-top: 40px;
 
 }
 
 .footer-home {
-    padding-left: 178px;
+    padding-left: 20px;
     padding-top: 40px; 
 }
 
 .footer-pricing {
-    padding-left: 69px;
+    padding-left: 20px;
     padding-top: 40px; 
 }
 
 .footer-career {
-    padding-left: 94px;
+    padding-left: 20px;
     padding-top: 40px; 
 }
 .referral-hr {
     background-color: #4552C1;
     height: 3px;
-    width: 1920PX;
+    width: 100%;
 } 
 
 .footer-contacts {

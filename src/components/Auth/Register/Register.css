@@ -54,6 +54,7 @@
 }
 
 .signup-main-registerbutton {
+    cursor: pointer;
     text-align: center;
     /* font: normal normal bold 15px/20px Open Sans; */
     letter-spacing: 0.3px;
@@ -121,6 +122,7 @@ input.register-checkbox {
 }
 
 .registerbtn {
+    cursor: pointer;
     width: 150px;
     height: 50px;
     background: #4552C1 0% 0% no-repeat padding-box;

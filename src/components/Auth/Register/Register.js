@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
+import FooterSend from "../Footersend/Foter";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -72,7 +73,7 @@ const Register = () => {
           <p className="signup-main-registerheading">REGISTER</p>
           <div className="register-input">
             <div className="register-input-width50">
-              <label class="custom-field two">
+              <label className="custom-field two">
                 <form method="POST">
                   <input
                     type="text"
@@ -88,9 +89,9 @@ const Register = () => {
               <p id="errorname"></p>
               <br></br>
 
-              <label class="custom-field two">
+              <label className="custom-field two">
                 <input
-                  type="number"
+                  type="text"
                   name="phone"
                   value={user.phone}
                   onChange={handleInputs}
@@ -102,7 +103,7 @@ const Register = () => {
               <p id="errorphone"></p>
               <br></br>
 
-              <label class="custom-field two">
+              <label className="custom-field two">
                 <input
                   type="text"
                   name="state"
@@ -116,7 +117,7 @@ const Register = () => {
               <p id="errorstate"></p>
               <br></br>
 
-              <label class="custom-field two">
+              <label className="custom-field two">
                 <input
                   type="text"
                   name="address"
@@ -130,7 +131,7 @@ const Register = () => {
               <p id="erroraddress"></p>
             </div>
             <div className="register-input-width50">
-              <label class="custom-field two">
+              <label className="custom-field two">
                 <input
                   type="email"
                   name="email"
@@ -144,7 +145,7 @@ const Register = () => {
               <p id="erroremail"></p>
               <br></br>
 
-              <label class="custom-field two">
+              <label className="custom-field two">
                 <input
                   type="password"
                   name="password"
@@ -156,9 +157,9 @@ const Register = () => {
               </label>
               <br></br>
               <br></br>
-              <label class="custom-field two"></label>
+              <label className="custom-field two"></label>
 
-              <label class="custom-field two">
+              <label className="custom-field two">
                 <input
                   type="text"
                   name="district"
@@ -172,9 +173,9 @@ const Register = () => {
               <p id="errordistrict"></p>
               <br></br>
 
-              <label class="custom-field two">
+              <label className="custom-field two">
                 <input
-                  type="number"
+                  type="text"
                   name="pincode"
                   value={user.pincode}
                   onChange={handleInputs}
@@ -184,13 +185,13 @@ const Register = () => {
               </label>
             </div>
           </div>
-          <p className="register-agree">
+          <div className="register-agree">
             <p style={{ textDecoration: "underline", fontSize: "18px" }}>
               <input type="checkbox" className="register-checkbox"></input>I
               agree to Terms & Condition receiving marketing and promotional
               materials.
             </p>
-          </p>
+          </div>
 
           <button
             onClick={postData}
@@ -207,6 +208,7 @@ const Register = () => {
           </button>
         </div>
       </div>
+      <FooterSend/>
     </>
   );
 };

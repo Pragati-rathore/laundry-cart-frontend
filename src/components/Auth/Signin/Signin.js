@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 // import {useHistroy} from "react-router-dom"
  import { useNavigate } from "react-router-dom";
+import FooterSend from "../Footersend/Foter";
 import "./Signin.css";
-import lock from "../lock.svg";
+import lock from "../../../images/lock.svg";
 
 const Signin = () => {
   const [username, setEmail] = useState("");
@@ -47,7 +48,7 @@ const Signin = () => {
         <div className="signin-cont-right">
           <p className="signin-cont-signinhead">SIGN IN</p>
           <form className="signin-form" method="POST" >
-            <label class="inp two">
+            <label className="inp two">
             
               <input 
                 style={{ fontSize: "18px", color: "#77838F" }}
@@ -61,7 +62,7 @@ const Signin = () => {
             <p></p>
             <br></br>
             <br></br>
-            <label style={{ display: "flex" }} class="inp two">
+            <label style={{ display: "flex" }} className="inp two">
               <input
                 style={{ fontSize: "18px", color: "#77838F" }}
                 value={password}
@@ -85,10 +86,11 @@ const Signin = () => {
               Forget Password?
             </p>
             
-            <button onClick={loginUser} >Sign In</button>
+            <button onClick={loginUser} className="signin-button">Sign In</button>
           </form>
         </div>
       </div>
+      <FooterSend/>
     </>
   );
 };
