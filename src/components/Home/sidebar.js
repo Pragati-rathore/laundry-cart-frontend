@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ContentIcon from "../../images/content.png";
 import PlusIcon from "../../images/plus.png";
 import HomeIcon from "../../images/home.png";

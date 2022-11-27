@@ -1,14 +1,11 @@
 import React from "react";
 import "./pastSummary.css"
-import {useState} from "react";
 
 
 function PastSummary(){
 
-    const [location, setLocation] = useState("store location");
     return(
         <>
-
 <div className="summary__conatiner1">
           <div className="summary__leftdiv">
             <header className="summary__header">
@@ -25,7 +22,7 @@ function PastSummary(){
                 className="summary__storeselector__form"
                 required="true"
                 onChange={(e) => {
-                  setLocation(e.target.value);
+                  //setLocation(e.target.value);
                 }}
               >
                 <option value="store location">Store Location</option>
