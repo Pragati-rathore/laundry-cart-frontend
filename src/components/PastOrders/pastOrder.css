@@ -143,6 +143,17 @@ h4{
   width: 20px;
   cursor: pointer;
 }
+
+.search-bar input {
+  border: none;
+}
+
+.details-container1:nth-child(odd){
+  background-color: white;
+}
+.details-container1:nth-child(even){
+  background-color: #EAEDF0;
+}
 /* h4,
 p {
   text-align: left;
@@ -159,3 +170,4 @@ p {
   width: 128.2px;
   text-align: center;
 } */
+

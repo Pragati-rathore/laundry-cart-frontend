@@ -81,6 +81,9 @@ function PastOrder() {
               <h6>Status</h6>
             </div>
             <div className="column">
+              <h6></h6>
+            </div>
+            <div className="column">
               <h6>View</h6>
             </div>
           </div>
