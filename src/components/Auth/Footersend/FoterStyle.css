@@ -1,0 +1,111 @@
+
+
+
+.referral-div {
+    font-family: open-sans, sans-serif;
+    width: 1920PX;
+    height: 80px;
+    text-align: center;
+    background: #F8F9FF 0% 0% no-repeat padding-box;
+    box-shadow: 0px -3px 6px #0000000B;
+    opacity: 1;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.referral-h3 {
+   font-size: 24px;
+   font-weight: 600;
+   font-style: normal;
+   letter-spacing: 0.96px;
+   color: #5861AE;
+   opacity: 1;
+}
+
+.referral-p {
+    font-family: open-sans, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.footer-container {
+    /* border: 1px solid rgb(255, 0, 0); */
+    margin-top: -0.7em;
+    padding-top: 0.7em;
+    height: 197px;
+    width: 100%;
+    display: flex; 
+    font-family: 'Avenir', sans-serif;
+}
+
+
+.footer-aboutUs {
+    padding-left: 574px;
+    padding-top: 40px;
+
+}
+
+.footer-home {
+    padding-left: 178px;
+    padding-top: 40px; 
+}
+
+.footer-pricing {
+    padding-left: 69px;
+    padding-top: 40px; 
+}
+
+.footer-career {
+    padding-left: 94px;
+    padding-top: 40px; 
+}
+.referral-hr {
+    background-color: #4552C1;
+    height: 3px;
+    width: 1920PX;
+} 
+
+.footer-contacts {
+    padding-left: 62.54px;
+    padding-top: 40px; 
+}
+
+.footer-social {
+    padding-left: 103.46px;
+    padding-top: 40px; 
+}
+
+.footer-light-text {
+    font-family: "Avenir Light";
+    margin-top: 15px;
+}
+
+.footer-icon-div {
+    /* border: 1px solid black; */
+    display: flex;
+  
+}
+
+.footer-icon {
+    /* border: 1px solid black; */
+    margin-top: 15px;
+    width: 20px;
+    margin-right: 20.5px;
+}
+
+.SmallFooter-container {
+    height : 50px;
+    background-color: #182838;
+    color: #ffff;
+    border: 1px solid #707070;
+    display: grid;
+    align-content: center;
+    text-align: center;
+    font-family: "Avenir Light";
+    font-size: 12px;
+    width : 100%;
+    bottom: 0px;
+    
+}

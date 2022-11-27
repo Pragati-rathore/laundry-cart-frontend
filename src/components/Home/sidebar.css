@@ -1,0 +1,28 @@
+.sidebar{
+    background-color: #5861AE;
+    width: 49px;
+    padding: 20px 0 50px;
+    margin: 0px;
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.home {
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.plus {
+    cursor: pointer;
+}
+
+#content{
+    cursor: pointer;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    background-color:#FFFFFF ;
+}
