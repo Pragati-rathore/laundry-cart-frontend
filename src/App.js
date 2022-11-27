@@ -3,10 +3,10 @@ import "./App.css";
 
 import NavbarAndFooter from "./components/NavbarAndFooter";
 import Signin from "./components/Auth/Signin/Signin";
+import Register from "./components/Auth/Register/Register";
 
 //import SideBar from "./components/Home/sidebar";
 //import Footer from "./components/Home/footer";
-//import Register from "./components/Auth/Register/Register";
 //import CreateOrderButton from "./components/createOrderButton";
 import CreateOrder from "./components/createOrder/CreateOrder";
 
@@ -23,7 +23,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavbarAndFooter/>}>
-            <Route path="signin" element={<Signin/>}/>
+            <Route index element={<Signin/>}/>
+            <Route path="register" element={<Register/>}/>
             <Route path="createorder" element={<CreateOrder/>}/>
           </Route>
         </Routes>

@@ -1,10 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./Register.css";
-import Header from "../../header";
-// import Footer from "../../footer";
-import Foter from "../Footersend/Foter";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -17,7 +14,7 @@ const Register = () => {
     address: "",
     password: "",
   });
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleInputs = (e) => {
     let name = e.target.name;
@@ -46,15 +43,15 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         if (data.status === "failed") {
           window.alert(data.message);
-          //  console.log("registration succ")
-        } else if(data.status==="success") {
-          window.alert(data.message);
-          //  console.log("invalid succ")
+        } else if (data.status === "success") {
+          navigate("/");
+          //window.alert(data.message);
         }
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.log(err);
       });
     // await res.json()
@@ -62,7 +59,6 @@ const Register = () => {
 
   return (
     <>
-      <Header />
       <div className="signup-cont">
         <div className="signup-cont-left">
           <h1 className="signup-main-laundryheading">Laundry Service</h1>
@@ -70,7 +66,7 @@ const Register = () => {
             Doorstep Wash & Dryclean Service
           </p>
           <p className="signup-main-alreadyhaveaccount">Already Have Account</p>
-          <button className="signup-main-registerbutton">Sign In</button>
+          <button className="signup-main-registerbutton" onClick={e => navigate("/")}>Sign In</button>
         </div>
         <div className="signup-cont-right">
           <p className="signup-main-registerheading">REGISTER</p>
@@ -211,7 +207,6 @@ const Register = () => {
           </button>
         </div>
       </div>
-      <Foter />
     </>
   );
 };

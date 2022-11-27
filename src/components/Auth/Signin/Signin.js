@@ -1,15 +1,16 @@
 import React from "react";
 import { useState } from "react";
 // import {useHistroy} from "react-router-dom"
-// import { useNavigate } from "react-router-dom";
+ import { useNavigate } from "react-router-dom";
 import "./Signin.css";
 import lock from "../lock.svg";
 
 const Signin = () => {
-  // const histroy=useHistroy()
   const [username, setEmail] = useState("");
   const [password,setPass]=useState("")
-  // const [show, setShow] = useState(false);
+
+  const navigate = useNavigate();
+
   const loginUser=  (e)=>{
     e.preventDefault();
     fetch("https://laundry-server.onrender.com/login",{
@@ -22,13 +23,12 @@ const Signin = () => {
       })
      }).then((res) => res.json())
      .then((data) => {
-       console.log(data)
        if (data.status === "failed") {
          window.alert(data.message);
-         //  console.log("registration succ")
        } else if(data.status==="success") {
-         window.alert(data.message);
-         //  console.log("invalid succ")
+          localStorage.setItem("laundry-token", data.token);
+         navigate("/orders");
+         //window.alert(data.message);
        }
      }).catch((err) => {
        console.log(err);
@@ -42,7 +42,7 @@ const Signin = () => {
           <h1 className="signin-cont-laundryhead">Laundry Service</h1>
           <p className="signin-cont-description">Doorstep Wash & Dryclean Service</p>
           <p className="signin-cont-noacc">Don't Have An Account?</p>
-          <button className="signin-cont-regisbut">Register</button>
+          <button className="signin-cont-regisbut" onClick={(e) => navigate("/register")}>Register</button>
         </div>
         <div className="signin-cont-right">
           <p className="signin-cont-signinhead">SIGN IN</p>
