@@ -12,6 +12,8 @@ export default function Summary(props) {
   });
   const [chargeObj, subTotal] = calculateSubTotal(order, productTypes);
 
+  const [user, setUser] = useState({});
+
   useEffect(() => {
     fetch("https://laundry-server.onrender.com/stores")
       .then((res) => res.json())
@@ -25,9 +27,28 @@ export default function Summary(props) {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    fetch("https://laundry-server.onrender.com/users", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("laundry-token")}`
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.dir( data);
+        if (data.status !== "failed") {
+          setUser(data.user);
+        } else {
+          throw new Error("Fetching available stores failed");
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  
   //useEffect(() => {
-    //console.log(selectedStore);
-  //}, [selectedStore]);
+    //console.log(user);
+  //}, [user]);
 
   return (
     <>
@@ -100,17 +121,22 @@ export default function Summary(props) {
             </div>
           </div>
         </div>
+
         <div className="price-table-container">
           <div>Order details</div>
           <table>
+            <tbody>
             {order.map((orderChoice) => {
-              return <PriceRow orderChoice={orderChoice} chargeObj={chargeObj} />;
+              return <PriceRow key={orderChoice.prodName} orderChoice={orderChoice} chargeObj={chargeObj} />;
             })}
-            <tr id="sub-total"><td>{subTotal}</td></tr>
-            <tr id="pickup-charge"><td>90</td></tr>
-            <tr id="total-price"><td>{`Rs ${subTotal + 90}`}</td></tr>
+            <tr id="sub-total"><td>SubTotal: </td><td>{subTotal}</td></tr>
+            <tr id="pickup-charge"><td>Service Charge: </td><td>90</td></tr>
+            <tr id="total-price"><td>Total: </td><td>{`Rs ${subTotal + 90}`}</td></tr>
+              </tbody>
           </table>
         </div>
+
+        <div className="address-card-container"></div>
       </div>
     </>
   );
