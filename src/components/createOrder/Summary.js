@@ -102,9 +102,6 @@ export default function Summary(props) {
         <div className="price-table-container">
           <div>Order details</div>
           <table>
-            {order.map((orderChoice) => {
-              return <PriceRow orderChoice={orderChoice} productTypes={productTypes} />;
-            })}
           </table>
         </div>
       </div>
@@ -145,6 +142,9 @@ function PriceRow(props) {
   const charge = chargePerProd(product) * quantity;
 
   return (
-    {charge > } 
+    <div>Implement Table</div>
   )
 }
+            //{order.map((orderChoice) => {
+              //return <PriceRow orderChoice={orderChoice} productTypes={productTypes} />;
+            //})}
