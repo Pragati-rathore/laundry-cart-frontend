@@ -1,9 +1,9 @@
 import { useState} from "react";
-//import OrderSuccess from "./OrderSuccess";
+import CancelOrder from "./CancelOrder";
 import "./Summary.css";
 
 export default function Summary(props) {
-  const { orders, orderId, productTypes, cancelHandler, cancelPopup } = props;
+  const { orders, orderId, productTypes, cancelHandler, cancelPopup, cancelPopupHandler } = props;
 
   const order = orders.find((orderObj) => {
     if (orderObj._id === orderId) return true;
@@ -13,7 +13,7 @@ export default function Summary(props) {
   console.log(order, "dskagjfghjgsajfgjhsagfhgfsafaghjgfajgsj")
   const store = order.storeId;
 
-  const [chargeObj, subTotal, quantityTotal] = calculateSubTotal(
+  const [chargeObj, subTotal] = calculateSubTotal(
     order.order,
     productTypes
   );
@@ -127,11 +127,11 @@ export default function Summary(props) {
           </div>
         </>
       )}
+      {isCancel && <CancelOrder orderId={order._id} cancelPopupHandler={cancelPopupHandler}/>}
     </>
   );
 }
 
-      //{isCancel && <OrderSuccess />}
 function PriceRow(props) {
   const { prodType, quantity } = props.orderChoice;
   const { chargeObj } = props;
@@ -151,7 +151,6 @@ function PriceRow(props) {
 function calculateSubTotal(order, productTypes) {
   let subTotal = 0;
   let chargeObj = {};
-  let quantityTotal = 0;
   order.forEach((orderChoice) => {
     const { prodType, quantity, washType } = orderChoice;
     const product = productTypes.find(
@@ -192,8 +191,7 @@ function calculateSubTotal(order, productTypes) {
     };
     let [c, serviceString] = chargePerProd(product);
     chargeObj[prodType] = [c, serviceString];
-    quantityTotal += quantity;
     subTotal += c * quantity;
   });
-  return [chargeObj, subTotal, quantityTotal];
+  return [chargeObj, subTotal];
 }

@@ -165,8 +165,9 @@ function PastOrder() {
                             <p
                               id="cancel-text-cell"
                               onClick={(e) => {
-                                //setIsCancel(true);
-                                //setSelectedOrderId(order._id);
+                                setCancelPopup(true);
+                                setIsSummary(true);
+                                setSelectedOrderId(order._id);
                               }}
                             >
                               Cancel Order
@@ -191,7 +192,19 @@ function PastOrder() {
           </div>
         </div>
       )}
-      {isSummary && <Summary orderId={selectedOrderId} orders={orders} productTypes={productTypes} cancelHandler={e => setIsSummary(false)} cancelPopup={cancelPopup}/>}
+      {isSummary && (
+        <Summary
+          orderId={selectedOrderId}
+          orders={orders}
+          productTypes={productTypes}
+          cancelHandler={(e) => setIsSummary(false)}
+          cancelPopup={cancelPopup}
+          cancelPopupHandler={() => {
+            setCancelPopup(false);
+            setIsSummary(false);
+          }}
+        />
+      )}
       {orders.length === 0 && <CreateOrderButton />}
     </>
   );
