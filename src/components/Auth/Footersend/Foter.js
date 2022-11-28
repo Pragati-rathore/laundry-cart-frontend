@@ -9,6 +9,7 @@ const Foter = () => {
     // <div>
     <div className="main-cont">
       <hr className="referral-hr"></hr>
+      <div className="flex-footer-wrapper">
       <div className="referral-div">
         <h3 className="referral-h3">
           Now Refer & Earn <span>&#8377;</span>500 for every referral*
@@ -51,6 +52,7 @@ const Foter = () => {
             <img className="footer-icon" src={ln} alt="" />
           </div>
         </div>
+      </div>
       </div>
     </div>
     // </div>
