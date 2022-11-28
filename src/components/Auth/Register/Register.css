@@ -1,3 +1,9 @@
+.flex-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .signup-cont {
     display: flex;
     width: 100%;
@@ -9,7 +15,7 @@
 }
 
 .signup-cont-right {
-    width: 50%;
+    width: 70%;
     background: #dbdef2 0% 0% no-repeat padding-box;
     opacity: 1;
     padding-left: 63px;
@@ -114,8 +120,7 @@ input.register-checkbox {
 
 .register-agree {
     text-align: center;
-
-    font: normal normal normal 14px/20px Open Sans;
+    font: 14px;
     letter-spacing: 0.49px;
     color: #5861AE;
     opacity: 1;
@@ -207,3 +212,13 @@ input.register-checkbox {
     background-size: 100% 0.15em, 100% 0.1em, 100%;
 }
 
+
+.signup-cont-right input[type="text"], .signup-cont-right input[type="email"], .signup-cont-right input[type="password"] {
+    background: none;
+    font-size: 17px;
+    border-bottom: 1px solid #989898;
+}
+
+.referral-hr {
+    margin: 0px;
+}

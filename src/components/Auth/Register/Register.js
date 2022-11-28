@@ -60,6 +60,7 @@ const Register = () => {
 
   return (
     <>
+      <div className="flex-wrapper">
       <div className="signup-cont">
         <div className="signup-cont-left">
           <h1 className="signup-main-laundryheading">Laundry Service</h1>
@@ -87,7 +88,6 @@ const Register = () => {
               </label>
               <br></br>
               <p id="errorname"></p>
-              <br></br>
 
               <label className="custom-field two">
                 <input
@@ -157,6 +157,7 @@ const Register = () => {
               </label>
               <br></br>
               <br></br>
+              <br/>
               <label className="custom-field two"></label>
 
               <label className="custom-field two">
@@ -207,6 +208,7 @@ const Register = () => {
             Register
           </button>
         </div>
+      </div>
       </div>
       <FooterSend/>
     </>
