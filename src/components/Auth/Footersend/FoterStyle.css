@@ -18,6 +18,7 @@
    letter-spacing: 0.96px;
    color: #5861AE;
    opacity: 1;
+   margin: 0px;
 }
 
 .referral-p {
@@ -29,8 +30,12 @@
 
 .footer-container {
     /* border: 1px solid rgb(255, 0, 0); */
-    margin-top: -0.7em;
-    padding-top: 0.7em;
+    /*margin-top: -0.7em;*/
+    /*padding-top: 0.7em;*/
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-top: 40px;
     height: 197px;
     width: 100%;
     display: flex; 
@@ -40,24 +45,24 @@
 
 
 .footer-aboutUs {
-    padding-left: 20px;
-    padding-top: 40px;
+    /*padding-left: 20px;*/
+    /*padding-top: 40px;*/
 
 }
 
 .footer-home {
-    padding-left: 20px;
-    padding-top: 40px; 
+    /*padding-left: 20px;*/
+    /*padding-top: 40px; */
 }
 
 .footer-pricing {
-    padding-left: 20px;
-    padding-top: 40px; 
+    /*padding-left: 20px;*/
+    /*padding-top: 40px; */
 }
 
 .footer-career {
-    padding-left: 20px;
-    padding-top: 40px; 
+    /*padding-left: 20px;*/
+    /*padding-top: 40px; */
 }
 .referral-hr {
     background-color: #4552C1;
@@ -66,13 +71,13 @@
 } 
 
 .footer-contacts {
-    padding-left: 62.54px;
-    padding-top: 40px; 
+    /*padding-left: 62.54px;*/
+    /*padding-top: 40px; */
 }
 
 .footer-social {
-    padding-left: 103.46px;
-    padding-top: 40px; 
+    /*padding-left: 103.46px;*/
+    /*padding-top: 40px; */
 }
 
 .footer-light-text {
@@ -106,4 +111,11 @@
     width : 100%;
     bottom: 0px;
     
+}
+
+.flex-footer-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
