@@ -1,3 +1,3 @@
-const BACKEND_URL = "https://laundry-cart-backend-saw.onrender.com"
+const BACKEND_URL =  "https://laundry-cart-backend-saw.onrender.com"
 
-module.exports = BACKEND_URL;
+export default BACKEND_URL;

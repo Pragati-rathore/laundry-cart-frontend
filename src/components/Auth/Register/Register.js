@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 import FooterSend from "../Footersend/Foter";
+import BACKEND_URL from "../../../exports";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -26,7 +27,7 @@ const Register = () => {
     e.preventDefault();
     const { name, email, phone, district, state, pincode, address, password } =
       user;
-    fetch("https://laundry-server.onrender.com/register", {
+    fetch(`${BACKEND_URL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
