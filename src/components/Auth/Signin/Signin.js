@@ -5,6 +5,7 @@ import { useState } from "react";
 import FooterSend from "../Footersend/Foter";
 import "./Signin.css";
 import lock from "../../../images/lock.svg";
+import BACKEND_URL from "../../../exports";
 
 const Signin = () => {
   const [username, setEmail] = useState("");
@@ -14,7 +15,7 @@ const Signin = () => {
 
   const loginUser=  (e)=>{
     e.preventDefault();
-    fetch("https://laundry-server.onrender.com/login",{
+    fetch(`${BACKEND_URL}/login`,{
       method:"POST",
       headers:{
         "Content-Type":"application/json"

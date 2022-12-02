@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import OrderSuccess from "./OrderSuccess";
 import "./Summary.css";
+import BACKEND_URL from "../../exports";
 
 export default function Summary(props) {
   const { order, cancelHandler, productTypes } = props;
@@ -17,7 +18,7 @@ export default function Summary(props) {
   const [user, setUser] = useState({ _id: "", address: [] });
 
   useEffect(() => {
-    fetch("https://laundry-server.onrender.com/stores")
+    fetch(`${BACKEND_URL}/stores`)
       .then((res) => res.json())
       .then((data) => {
         if (data.status !== "failed") {
@@ -30,7 +31,7 @@ export default function Summary(props) {
   }, []);
 
   useEffect(() => {
-    fetch("https://laundry-server.onrender.com/users", {
+    fetch(`${BACKEND_URL}/users`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("laundry-token")}`,
@@ -61,7 +62,7 @@ export default function Summary(props) {
       window.alert("Select a store");
     }
     if (subTotal > 0 && selectedStore._id !== "") {
-      fetch("https://laundry-server.onrender.com/orders", {
+      fetch(`${BACKEND_URL}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
