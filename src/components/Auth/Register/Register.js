@@ -23,6 +23,7 @@ const Register = () => {
     pincode: "",
     address: "",
     password: "",
+    tandc: false,
   });
 
   const [isInvalid, setIsInvalid] = useState({
@@ -35,7 +36,11 @@ const Register = () => {
   const handleInputs = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    setUser({ ...user, [name]: value });
+    if (e.target.type === "checkbox") {
+      setUser({ ...user, [name]: !user[name] });
+    } else {
+      setUser({ ...user, [name]: value });
+    }
   };
 
   const postData = (e) => {
@@ -99,32 +104,113 @@ const Register = () => {
           <div className="register-form-wrapper">
             <form id="reg-form" onSubmit={postData} method="POST" action="#">
               <div className="input-wrapper">
-                <label className="input-label" htmlFor="#"></label>
-                <input type="text" value="#" name="#" onChange="#" placeholder="#" />
+                <label className="input-label" htmlFor="name"></label>
+                <input
+                  type="text"
+                  value={user.name}
+                  name="name"
+                  id="name"
+                  onChange={handleInputs}
+                  placeholder="Name"
+                  required={true}
+                />
+              </div>
+              <div className="input-wrapper">
+                <label className="input-label" htmlFor="email"></label>
+                <input
+                  type="email"
+                  value={user.email}
+                  name="email"
+                  onChange={handleInputs}
+                  placeholder="Email"
+                  id="email"
+                  required={true}
+                />
+              </div>
+              <div className="input-wrapper">
+                <label className="input-label" htmlFor="phone"></label>
+                <input
+                  type="text"
+                  value={user.phone}
+                  name="phone"
+                  onChange={handleInputs}
+                  placeholder="Phone"
+                  required={true}
+                />
               </div>
               <div className="input-wrapper">
                 <label className="input-label" htmlFor="#"></label>
-                <input type="text" value="#" name="#" onChange="#" placeholder="#" />
+                <select
+                  id="state"
+                  name="state"
+                  value={user.state}
+                  onChange={handleInputs}
+                  required={true}
+                >
+                  <option value="" selected disabled>
+                    State
+                  </option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Jharkhand">Jharkhand</option>
+                  <option value="West Bengal">West Bengal</option>
+                  <option value="Assam">Assam</option>
+                </select>
               </div>
               <div className="input-wrapper">
                 <label className="input-label" htmlFor="#"></label>
-                <input type="text" value="#" name="#" onChange="#" placeholder="#" />
+                <select
+                  id="district"
+                  name="district"
+                  value={user.district}
+                  onChange={handleInputs}
+                  required={true}
+                >
+                  <option value="" selected disabled>
+                    District
+                  </option>
+                  <option value="Lucknow">Lucknow</option>
+                  <option value="Bhopal">Bhopal</option>
+                  <option value="Ranchi">Ranchi</option>
+                  <option value="Kolkata">Kolkata</option>
+                  <option value="Guwahati">Guwahati</option>
+                </select>
               </div>
               <div className="input-wrapper">
-                <label className="input-label" htmlFor="#"></label>
-                <input type="text" value="#" name="#" onChange="#" placeholder="#" />
+                <label className="input-label" htmlFor="address"></label>
+                <input
+                  type="text"
+                  value={user.address}
+                  name="address"
+                  onChange={handleInputs}
+                  placeholder="Address"
+                  required={true}
+                  id="address"
+                />
               </div>
               <div className="input-wrapper">
-                <label className="input-label" htmlFor="#"></label>
-                <input type="text" value="#" name="#" onChange="#" placeholder="#" />
+                <label className="input-label" htmlFor="pincode"></label>
+                <input
+                  type="text"
+                  value={user.pincode}
+                  name="pincode"
+                  onChange={handleInputs}
+                  placeholder="Pincode"
+                  required={true}
+                  id="pincode"
+                />
               </div>
               <div className="input-wrapper">
-                <label className="input-label" htmlFor="#"></label>
-                <input type="text" value="#" name="#" onChange="#" placeholder="#" />
-              </div>
-              <div className="input-wrapper">
-                <label className="input-label" htmlFor="#"></label>
-                <input type="text" value="#" name="#" onChange="#" placeholder="#" />
+                <input
+                  type="checkbox"
+                  checked={user.tandc}
+                  onChange={handleInputs}
+                  name="tandc"
+                  id="tandc"
+                />
+                <label className="input-label" htmlFor="tandc">
+                  I agree to <a href="#reg-form">Terms & Conditions</a>
+                </label>
               </div>
             </form>
           </div>
