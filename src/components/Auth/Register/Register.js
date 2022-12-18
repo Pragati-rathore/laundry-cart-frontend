@@ -13,6 +13,15 @@ const errorMsg = {
   pincode: "Type a valid 6 digit pincode",
 };
 
+const chkInputRegEx = {
+  email:
+    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
+  name: /^[a-zA-Z]{2,}[a-zA-Z ]*$/,
+  phone: /^\d{10}$/,
+  password: /^.{6,}$/,
+  pincode: /^\d{6,}$/,
+};
+
 const Register = () => {
   const [user, setUser] = useState({
     name: "",
@@ -26,16 +35,28 @@ const Register = () => {
     tandc: false,
   });
 
-  const [isInvalid, setIsInvalid] = useState({
-    bool: false,
-    message: "",
+  const [error, setError] = useState({
+    err: false,
+    errMsg: "",
   });
 
   const navigate = useNavigate();
 
+  const validateAndSetError = (inputName, inputValue) => {
+    if (chkInputRegEx[inputName] === undefined) return;
+    const isValid = chkInputRegEx[inputName].test(inputValue);
+
+    if (isValid === true && error.err === true) {
+      setError({ err: false, errMsg: "" });
+    } else if (isValid === false && error.err === false) {
+      setError({ err: true, errMsg: errorMsg[inputName] });
+    }
+  };
+
   const handleInputs = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+    validateAndSetError(name, value);
     if (e.target.type === "checkbox") {
       setUser({ ...user, [name]: !user[name] });
     } else {
@@ -43,7 +64,7 @@ const Register = () => {
     }
   };
 
-  const postData = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, phone, district, state, pincode, address, password } =
       user;
@@ -101,8 +122,14 @@ const Register = () => {
         </div>
         <div className="register-page-right">
           <h2>REGISTER</h2>
+          {error.err && <p className="error">{error.errMsg}</p>}
           <div className="register-form-wrapper">
-            <form id="reg-form" onSubmit={postData} method="POST" action="#">
+            <form
+              id="reg-form"
+              onSubmit={handleSubmit}
+              method="POST"
+              action="#"
+            >
               <div className="input-wrapper">
                 <label className="input-label" htmlFor="name"></label>
                 <input
@@ -124,6 +151,17 @@ const Register = () => {
                   onChange={handleInputs}
                   placeholder="Email"
                   id="email"
+                  required={true}
+                />
+              </div>
+              <div className="input-wrapper">
+                <label className="input-label" htmlFor="password"></label>
+                <input
+                  type="password"
+                  value={user.password}
+                  name="password"
+                  onChange={handleInputs}
+                  placeholder="Password"
                   required={true}
                 />
               </div>
@@ -212,6 +250,7 @@ const Register = () => {
                   I agree to <a href="#reg-form">Terms & Conditions</a>
                 </label>
               </div>
+              <button type="submit">Register</button>
             </form>
           </div>
         </div>
