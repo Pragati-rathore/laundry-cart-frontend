@@ -245,6 +245,7 @@ const Register = () => {
                   onChange={handleInputs}
                   name="tandc"
                   id="tandc"
+                  required
                 />
                 <label className="input-label" htmlFor="tandc">
                   I agree to <a href="#reg-form">Terms & Conditions</a>
