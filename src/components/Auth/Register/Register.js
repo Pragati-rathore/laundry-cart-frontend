@@ -3,24 +3,6 @@ import { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 import FooterSend from "../Footersend/Foter";
-import BACKEND_URL from "../../../exports";
-
-const errorMsg = {
-  email: "Type a Valid Email",
-  name: "Type Valid Full Name",
-  phone: "Type a 10 digit valid phone number",
-  password: "Type a valid password",
-  pincode: "Type a valid 6 digit pincode",
-};
-
-const chkInputRegEx = {
-  email:
-    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
-  name: /^[a-zA-Z]{2,}[a-zA-Z ]*$/,
-  phone: /^\d{10}$/,
-  password: /^.{6,}$/,
-  pincode: /^\d{6,}$/,
-};
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -32,44 +14,19 @@ const Register = () => {
     pincode: "",
     address: "",
     password: "",
-    tandc: false,
   });
-
-  const [error, setError] = useState({
-    err: false,
-    errMsg: "",
-  });
-
   const navigate = useNavigate();
-
-  const validateAndSetError = (inputName, inputValue) => {
-    if (chkInputRegEx[inputName] === undefined) return;
-    const isValid = chkInputRegEx[inputName].test(inputValue);
-
-    if (isValid === true && error.err === true) {
-      setError({ err: false, errMsg: "" });
-    } else if (isValid === false && error.err === false) {
-      setError({ err: true, errMsg: errorMsg[inputName] });
-    }
-  };
 
   const handleInputs = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    validateAndSetError(name, value);
-    if (e.target.type === "checkbox") {
-      setUser({ ...user, [name]: !user[name] });
-    } else {
-      setUser({ ...user, [name]: value });
-    }
+    setUser({ ...user, [name]: value });
   };
-
-  const handleSubmit = (e) => {
+  const postData = (e) => {
     e.preventDefault();
     const { name, email, phone, district, state, pincode, address, password } =
       user;
-
-    fetch(`${BACKEND_URL}/register`, {
+    fetch("https://laundry-server.onrender.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -103,160 +60,157 @@ const Register = () => {
 
   return (
     <>
-      <div className="register-page">
-        <div className="register-page-left">
-          <div>
-            <p>Laundry Cart</p>
-            <p>Doorstep Wash & Dryclean Service</p>
-          </div>
-          <div>
-            <p>Already have an account</p>
-            <button
-              className="reg-btn light"
-              type="button"
-              onClick={(_e) => navigate("/")}
-            >
-              Sign In
-            </button>
-          </div>
+      <div className="flex-wrapper">
+      <div className="signup-cont">
+        <div className="signup-cont-left">
+          <h1 className="signup-main-laundryheading">Laundry Service</h1>
+          <p className="signup-main-laundrydescription">
+            Doorstep Wash & Dryclean Service
+          </p>
+          <p className="signup-main-alreadyhaveaccount">Already Have Account</p>
+          <button className="signup-main-registerbutton" onClick={e => navigate("/")}>Sign In</button>
         </div>
-        <div className="register-page-right">
-          <h2>REGISTER</h2>
-          {error.err && <p className="error">{error.errMsg}</p>}
-          <div className="register-form-wrapper">
-            <form
-              id="reg-form"
-              onSubmit={handleSubmit}
-              method="POST"
-              action="#"
-            >
-              <div className="input-wrapper">
-                <label className="input-label" htmlFor="name"></label>
+        <div className="signup-cont-right">
+          <p className="signup-main-registerheading">REGISTER</p>
+          <div className="register-input">
+            <div className="register-input-width50">
+              <label className="custom-field two">
+                <form method="POST">
+                  <input
+                    type="text"
+                    name="name"
+                    value={user.name}
+                    onChange={handleInputs}
+                    placeholder="Name"
+                    style={{ fontSize: "18px", color: "#77838F" }}
+                  />
+                </form>
+              </label>
+              <br></br>
+              <p id="errorname"></p>
+
+              <label className="custom-field two">
                 <input
                   type="text"
-                  value={user.name}
-                  name="name"
-                  id="name"
-                  onChange={handleInputs}
-                  placeholder="Name"
-                  required={true}
-                />
-              </div>
-              <div className="input-wrapper">
-                <label className="input-label" htmlFor="email"></label>
-                <input
-                  type="email"
-                  value={user.email}
-                  name="email"
-                  onChange={handleInputs}
-                  placeholder="Email"
-                  id="email"
-                  required={true}
-                />
-              </div>
-              <div className="input-wrapper">
-                <label className="input-label" htmlFor="password"></label>
-                <input
-                  type="password"
-                  value={user.password}
-                  name="password"
-                  onChange={handleInputs}
-                  placeholder="Password"
-                  required={true}
-                />
-              </div>
-              <div className="input-wrapper">
-                <label className="input-label" htmlFor="phone"></label>
-                <input
-                  type="text"
-                  value={user.phone}
                   name="phone"
+                  value={user.phone}
                   onChange={handleInputs}
-                  placeholder="Phone"
-                  required={true}
+                  placeholder="Phone No"
+                  style={{ fontSize: "18px", color: "#77838F" }}
                 />
-              </div>
-              <div className="input-wrapper">
-                <label className="input-label" htmlFor="#"></label>
-                <select
-                  id="state"
+              </label>
+              <br></br>
+              <p id="errorphone"></p>
+              <br></br>
+
+              <label className="custom-field two">
+                <input
+                  type="text"
                   name="state"
                   value={user.state}
                   onChange={handleInputs}
-                  required={true}
-                >
-                  <option value="" selected disabled>
-                    State
-                  </option>
-                  <option value="Uttar Pradesh">Uttar Pradesh</option>
-                  <option value="Madhya Pradesh">Madhya Pradesh</option>
-                  <option value="Jharkhand">Jharkhand</option>
-                  <option value="West Bengal">West Bengal</option>
-                  <option value="Assam">Assam</option>
-                </select>
-              </div>
-              <div className="input-wrapper">
-                <label className="input-label" htmlFor="#"></label>
-                <select
-                  id="district"
+                  placeholder="State"
+                  style={{ fontSize: "18px", color: "#77838F" }}
+                />
+              </label>
+              <br></br>
+              <p id="errorstate"></p>
+              <br></br>
+
+              <label className="custom-field two">
+                <input
+                  type="text"
+                  name="address"
+                  value={user.address}
+                  onChange={handleInputs}
+                  placeholder="Address"
+                  style={{ fontSize: "18px", color: "#77838F" }}
+                />
+              </label>
+              <br></br>
+              <p id="erroraddress"></p>
+            </div>
+            <div className="register-input-width50">
+              <label className="custom-field two">
+                <input
+                  type="email"
+                  name="email"
+                  value={user.email}
+                  onChange={handleInputs}
+                  placeholder="Email"
+                  style={{ fontSize: "18px", color: "#77838F" }}
+                />
+              </label>
+              <br></br>
+              <p id="erroremail"></p>
+              <br></br>
+
+              <label className="custom-field two">
+                <input
+                  type="password"
+                  name="password"
+                  value={user.password}
+                  onChange={handleInputs}
+                  placeholder="Password"
+                  style={{ fontSize: "18px", color: "#77838F" }}
+                />
+              </label>
+              <br></br>
+              <br></br>
+              <br/>
+              <label className="custom-field two"></label>
+
+              <label className="custom-field two">
+                <input
+                  type="text"
                   name="district"
                   value={user.district}
                   onChange={handleInputs}
-                  required={true}
-                >
-                  <option value="" selected disabled>
-                    District
-                  </option>
-                  <option value="Lucknow">Lucknow</option>
-                  <option value="Bhopal">Bhopal</option>
-                  <option value="Ranchi">Ranchi</option>
-                  <option value="Kolkata">Kolkata</option>
-                  <option value="Guwahati">Guwahati</option>
-                </select>
-              </div>
-              <div className="input-wrapper">
-                <label className="input-label" htmlFor="address"></label>
-                <input
-                  type="text"
-                  value={user.address}
-                  name="address"
-                  onChange={handleInputs}
-                  placeholder="Address"
-                  required={true}
-                  id="address"
+                  placeholder="District"
+                  style={{ fontSize: "18px", color: "#77838F" }}
                 />
-              </div>
-              <div className="input-wrapper">
-                <label className="input-label" htmlFor="pincode"></label>
+              </label>
+              <br></br>
+              <p id="errordistrict"></p>
+              <br></br>
+
+              <label className="custom-field two">
                 <input
                   type="text"
-                  value={user.pincode}
                   name="pincode"
+                  value={user.pincode}
                   onChange={handleInputs}
                   placeholder="Pincode"
-                  required={true}
-                  id="pincode"
+                  style={{ fontSize: "18px", color: "#77838F" }}
                 />
-              </div>
-              <div className="input-wrapper">
-                <input
-                  type="checkbox"
-                  checked={user.tandc}
-                  onChange={handleInputs}
-                  name="tandc"
-                  id="tandc"
-                  required
-                />
-                <label className="input-label" htmlFor="tandc">
-                  I agree to <a href="#reg-form">Terms & Conditions</a>
-                </label>
-              </div>
-              <button type="submit">Register</button>
-            </form>
+              </label>
+            </div>
           </div>
+          <div className="register-agree">
+            <p style={{ textDecoration: "underline", fontSize: "18px" }}>
+              <input type="checkbox" className="register-checkbox"></input>I
+              agree to Terms & Condition receiving marketing and promotional
+              materials.
+            </p>
+          </div>
+
+          <button
+            onClick={postData}
+            style={{
+              backgroundColor: "#5861AE",
+              marginLeft: "400px",
+              marginBottom: "10px",
+              fontSize: "larger",
+              fontWeight: 700,
+            }}
+            className="registerbtn"
+          >
+            Register
+          </button>
         </div>
       </div>
-      <FooterSend />
+      </div>
+      <FooterSend/>
     </>
   );
 };

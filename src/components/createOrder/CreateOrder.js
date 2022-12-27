@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 //images
 import searchIcon from "../../images/search.svg";
-import BACKEND_URL from "../../exports";
 
 export default function CreateOrder(props) {
   const [productTypes, setProductTypes] = useState([]);
@@ -17,7 +16,7 @@ export default function CreateOrder(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/products`)
+    fetch("https://laundry-server.onrender.com/products")
       .then((res) => res.json())
       .then((data) => setProductTypes(data.products))
       .catch((err) => console.log(err))

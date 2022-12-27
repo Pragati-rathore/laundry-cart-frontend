@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Summary2 from "./summary/Summary2";
-import BACKEND_URL from "../../exports";
 
 function PastOrder() {
   const [orders, setOrders] = useState([]);
@@ -19,7 +18,7 @@ function PastOrder() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/orders`, {
+    fetch("https://laundry-server.onrender.com/orders", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("laundry-token")}`,
@@ -38,7 +37,7 @@ function PastOrder() {
   }, [navigate]);
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/products`)
+    fetch("https://laundry-server.onrender.com/products")
       .then((res) => res.json())
       .then((data) => setProductTypes(data.products))
       .catch((err) => console.log(err))
