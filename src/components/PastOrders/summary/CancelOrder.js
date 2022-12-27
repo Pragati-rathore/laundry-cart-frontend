@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./CancelOrder.css";
+import BACKEND_URL from "../../../exports";
 
 export default function CancelOrder(props) {
   const { cancelPopupHandler } = props;
@@ -7,8 +8,8 @@ export default function CancelOrder(props) {
   const navigate = useNavigate();
 
   const handleDelete = (_e) => {
-    fetch("https://laundry-server.onrender.com/orders", {
-      method: "DELETE",
+    fetch(`${BACKEND_URL}/orders`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${localStorage.getItem("laundry-token")}`,
