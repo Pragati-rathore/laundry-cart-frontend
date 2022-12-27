@@ -9,7 +9,7 @@ export default function CancelOrder(props) {
 
   const handleDelete = (_e) => {
     fetch(`${BACKEND_URL}/orders`, {
-      method: "DELETE",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${localStorage.getItem("laundry-token")}`,
